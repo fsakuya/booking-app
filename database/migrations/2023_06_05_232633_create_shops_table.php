@@ -16,11 +16,17 @@ class CreateShopsTable extends Migration
     Schema::create('shops', function (Blueprint $table) {
       $table->id();
       $table->foreignId('owner_id')
-        ->constrained();
+        ->constrained()
+        ->onUpdate('cascade')
+        ->onDelete('cascade');
       $table->foreignId('area_id')
-        ->constrained();
+        ->constrained()
+        ->onUpdate('cascade')
+        ->onDelete('cascade');
       $table->foreignId('genre_id')
-        ->constrained();
+        ->constrained()
+        ->onUpdate('cascade')
+        ->onDelete('cascade');
       $table->string('name');
       $table->text('information');
       $table->timestamps();

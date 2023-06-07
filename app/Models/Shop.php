@@ -32,4 +32,8 @@ class Shop extends Model
   {
     return $this->belongsTo(Genre::class);
   }
+  public function image()
+  {
+    return $this->hasOne(Image::class);
+  }
 }

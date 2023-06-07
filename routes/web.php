@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\ShopListController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -13,12 +14,21 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('user.welcome');
-});
+// Route::get('/', function () {
+//   return view('user.welcome');
+// });
 
 Route::get('/dashboard', function () {
-    return view('user.dashboard');
+  return view('user.dashboard');
 })->middleware(['auth:users'])->name('dashboard');
 
-require __DIR__.'/auth.php';
+
+Route::get('/', [ShopListController::class, 'index'])->name('list.index');
+Route::get('/{shop}', [ShopListController::class, 'show'])->name('list.show');
+Route::get('/reviews/{shop}', [ShopListController::class, 'showReviews'])->name('list.reviews');
+
+
+
+
+
+require __DIR__ . '/auth.php';
