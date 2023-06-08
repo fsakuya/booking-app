@@ -14,3 +14,7 @@
 .card-line::after {
     border-style: none;
 }
+
+.select-no-border {
+  border: none;
+}

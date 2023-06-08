@@ -17,6 +17,7 @@ module.exports = {
       colors: {
         customBlue: '#305DFF',
       },
+      outline: ['focus']
     },
   },
 
