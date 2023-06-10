@@ -24,10 +24,12 @@ Route::get('/dashboard', function () {
 
 
 Route::get('/', [ShopListController::class, 'index'])->name('list.index');
-Route::get('/{shop}', [ShopListController::class, 'show'])->name('list.show');
-Route::get('/reviews/{shop}', [ShopListController::class, 'showReviews'])->name('list.reviews');
+Route::get('/{id}', [ShopListController::class, 'show'])->name('list.show');
+Route::get('/reviews/{id}', [ShopListController::class, 'showReviews'])->name('list.reviews');
 
 Route::post('/search', [ShopListController::class, 'search'])->name('list.search');
+
+
 
 
 
