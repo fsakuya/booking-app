@@ -2,7 +2,7 @@
 
 return [
 
-    /*
+  /*
     |--------------------------------------------------------------------------
     | Authentication Defaults
     |--------------------------------------------------------------------------
@@ -13,12 +13,12 @@ return [
     |
     */
 
-    'defaults' => [
-        'guard' => 'web',
-        'passwords' => 'users',
-    ],
+  'defaults' => [
+    'guard' => 'users',
+    'passwords' => 'users',
+  ],
 
-    /*
+  /*
     |--------------------------------------------------------------------------
     | Authentication Guards
     |--------------------------------------------------------------------------
@@ -35,14 +35,36 @@ return [
     |
     */
 
-    'guards' => [
-        'web' => [
-            'driver' => 'session',
-            'provider' => 'users',
-        ],
+
+  'guards' => [
+    'web' => [
+      'driver' => 'session',
+      'provider' => 'users',
     ],
 
-    /*
+    'users' => [
+      'driver' => 'session',
+      'provider' => 'users',
+    ],
+
+    'owners' => [
+      'driver' => 'session',
+      'provider' => 'owners',
+    ],
+
+    'admin' => [
+      'driver' => 'session',
+      'provider' => 'admin',
+    ],
+
+    'api' => [
+      'driver' => 'token',
+      'provider' => 'users',
+      'hash' => false,
+    ],
+  ],
+  
+  /*
     |--------------------------------------------------------------------------
     | User Providers
     |--------------------------------------------------------------------------
@@ -59,19 +81,29 @@ return [
     |
     */
 
-    'providers' => [
-        'users' => [
-            'driver' => 'eloquent',
-            'model' => App\Models\User::class,
-        ],
-
-        // 'users' => [
-        //     'driver' => 'database',
-        //     'table' => 'users',
-        // ],
+  'providers' => [
+    'users' => [
+      'driver' => 'eloquent',
+      'model' => App\Models\User::class,
     ],
 
-    /*
+    'owners' => [
+      'driver' => 'eloquent',
+      'model' => App\Models\Owner::class,
+    ],
+
+    'admin' => [
+      'driver' => 'eloquent',
+      'model' => App\Models\Admin::class,
+    ],
+
+    // 'users' => [
+    //     'driver' => 'database',
+    //     'table' => 'users',
+    // ],
+  ],
+
+  /*
     |--------------------------------------------------------------------------
     | Resetting Passwords
     |--------------------------------------------------------------------------
@@ -86,16 +118,30 @@ return [
     |
     */
 
-    'passwords' => [
-        'users' => [
-            'provider' => 'users',
-            'table' => 'password_resets',
-            'expire' => 60,
-            'throttle' => 60,
-        ],
+  'passwords' => [
+    'users' => [
+      'provider' => 'users',
+      'table' => 'password_resets',
+      'expire' => 60,
+      'throttle' => 60,
     ],
 
-    /*
+    'owners' => [
+      'provider' => 'owners',
+      'table' => 'owner_password_resets',
+      'expire' => 60,
+      'throttle' => 60,
+    ],
+
+    'admin' => [
+      'provider' => 'admin',
+      'table' => 'admin_password_resets',
+      'expire' => 60,
+      'throttle' => 60,
+    ],
+  ],
+
+  /*
     |--------------------------------------------------------------------------
     | Password Confirmation Timeout
     |--------------------------------------------------------------------------
@@ -106,6 +152,6 @@ return [
     |
     */
 
-    'password_timeout' => 10800,
+  'password_timeout' => 10800,
 
 ];
