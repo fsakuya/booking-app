@@ -5,13 +5,15 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Foundation\Auth\User as Authenticatable;
+use App\Models\Shop;
+
 
 
 class Owner extends Authenticatable
 {
-    use HasFactory;
+  use HasFactory;
 
-      /**
+  /**
    * The attributes that are mass assignable.
    *
    * @var array<int, string>
@@ -40,4 +42,9 @@ class Owner extends Authenticatable
   protected $casts = [
     'email_verified_at' => 'datetime',
   ];
+
+  public function shop()
+  {
+    return $this->hasMany(Shop::class);
+  }
 }

@@ -1,12 +1,6 @@
 <x-guest-layout>
-  <header class="text-gray-600 body-font">
-    <div class="container mx-auto flex flex-wrap p-5 flex-row items-center">
-      <a href="#" class="flex title-font font-medium items-center text-gray-900 mb-4 md:mb-0">
-        <img src="/images/menu-icon.svg" class="shadow-2 w-6 h-6" viewBox="0 0 24 24">
-        <span class="ml-3 text-2xl text-customBlue font-bold">Rese</span>
-      </a>
-    </div>
-  </header>
+  <x-common-header />
+
       <div class="max-w-sm mx-auto">
         <div class="border-none shadow-1 flex flex-col bg-white border rounded-xl dark:bg-gray-800 dark:border-gray-700 dark:shadow-slate-700/[.7]">
           <div class="bg-customBlue border-b rounded-t-xl py-3 px-4 md:py-4 md:px-5 dark:bg-gray-800 dark:border-gray-700">
