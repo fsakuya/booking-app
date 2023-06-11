@@ -26,8 +26,8 @@ class CreateReservationsTable extends Migration
       $table->date('date');
       $table->time('time');
       $table->integer('number');
-      $table->string('codename');
-      $table->boolean('visited');
+      $table->string('codename')->nullable();
+      $table->boolean('visited')->nullable();
       $table->timestamps();
     });
   }
