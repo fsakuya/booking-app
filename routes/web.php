@@ -23,7 +23,7 @@ Route::get('/dashboard', function () {
   return view('user.dashboard');
 })->middleware(['auth:users'])->name('dashboard');
 
-Route::get('/mypage', function () {
+Route::get('/menu', function () {
   if (auth()->check()) {
     return view('user.menu-loggedin');
   } else {
