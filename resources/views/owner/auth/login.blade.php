@@ -1,57 +1,51 @@
 <x-guest-layout>
-    <x-auth-card>
-      オーナー用
-        <x-slot name="logo">
-            <a href="/">
-                <x-application-logo class="w-20 h-20 fill-current text-gray-500" />
-            </a>
-        </x-slot>
-
-        <!-- Session Status -->
-        <x-auth-session-status class="mb-4" :status="session('status')" />
-
-        <!-- Validation Errors -->
-        <x-auth-validation-errors class="mb-4" :errors="$errors" />
-
-        <form method="POST" action="{{ route('owner.login') }}">
-            @csrf
-
-            <!-- Email Address -->
-            <div>
-                <x-label for="email" :value="__('Email')" />
-
-                <x-input id="email" class="block mt-1 w-full" type="email" name="email" :value="old('email')" required autofocus />
-            </div>
-
-            <!-- Password -->
-            <div class="mt-4">
-                <x-label for="password" :value="__('Password')" />
-
-                <x-input id="password" class="block mt-1 w-full"
-                                type="password"
-                                name="password"
-                                required autocomplete="current-password" />
-            </div>
-
-            <!-- Remember Me -->
-            <div class="block mt-4">
-                <label for="remember_me" class="inline-flex items-center">
-                    <input id="remember_me" type="checkbox" class="rounded border-gray-300 text-indigo-600 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50" name="remember">
-                    <span class="ml-2 text-sm text-gray-600">{{ __('Remember me') }}</span>
-                </label>
-            </div>
-
-            <div class="flex items-center justify-end mt-4">
-                @if (Route::has('owner.password.request'))
-                    <a class="underline text-sm text-gray-600 hover:text-gray-900" href="{{ route('owner.password.request') }}">
-                        {{ __('Forgot your password?') }}
-                    </a>
-                @endif
-
-                <x-button class="ml-3">
-                    {{ __('Log in') }}
-                </x-button>
-            </div>
-        </form>
-    </x-auth-card>
-</x-guest-layout>
+  <header class="text-gray-600 body-font">
+    <div class="container mx-auto flex flex-wrap p-5 flex-row items-center">
+      <a href="#" class="flex title-font font-medium items-center text-gray-900 mb-4 md:mb-0">
+        <img src="/images/menu-icon.svg" class="shadow-2 w-6 h-6" viewBox="0 0 24 24">
+        <span class="ml-3 text-2xl text-customBlue font-bold">Rese</span>
+      </a>
+    </div>
+  </header>
+  <!-- Session Status -->
+  <x-auth-session-status class="mb-4" :status="session('status')" />
+      <div class="max-w-sm mx-auto">
+        <div class="border-none shadow-1 flex flex-col bg-white border rounded-xl dark:bg-gray-800 dark:border-gray-700 dark:shadow-slate-700/[.7]">
+          <div class="bg-customBlue border-b rounded-t-xl py-3 px-4 md:py-4 md:px-5 dark:bg-gray-800 dark:border-gray-700">
+            <p class="mt-1 text-lg text-white">
+              Registration
+            </p>
+          </div>
+          <div class="p-4 md:p-5">
+            <x-auth-validation-errors class="mb-4" :errors="$errors" />
+            <form method="POST" action="{{ route('owner.login') }}">
+              @csrf
+                <div>
+                  <div class="flex">
+                    <div class="inset-y-0 left-0 flex items-center pointer-events-none">
+                      <img src="/images/mail-icon.svg" alt="my-icon" class="mr-3 mt-5 h-5 w-5 text-gray-400"/>
+                    </div>
+                    <input id="email" class="border-x-0 border-t-0 focus:ring-0 pb-1 pl-0 mt-5 block w-full text-sm" placeholder="Email" type="email" name="email" :value="old('email')" required/>
+                  </div>
+                </div>
+                <div>
+                  <div class="flex">
+                    <div class="inset-y-0 left-0 flex items-center pointer-events-none z-20">
+                      <img src="/images/password-icon.svg" alt="my-icon" class="mr-3 mt-5 h-5 w-5 text-gray-400"/>
+                    </div>
+                    <input id="password" class="border-x-0 border-t-0 focus:ring-0 pb-1 pl-0 mt-5 block w-full text-sm" placeholder="Password"
+                    type="password"
+                    name="password"
+                    required autocomplete="new-password" />              
+                  </div>
+                </div>
+                <div class="flex items-center justify-end mt-4" >
+                    <x-button class="ml-4 !bg-customBlue">
+                        {{ __('ログイン') }}
+                    </x-button>
+                </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </x-guest-layout>
