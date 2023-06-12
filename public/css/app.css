@@ -1606,6 +1606,11 @@ select {
   --tw-ring-offset-width: 2px !important;
 }
 
+.active\:bg-blue-600:active {
+  --tw-bg-opacity: 1 !important;
+  background-color: rgb(37 99 235 / var(--tw-bg-opacity)) !important;
+}
+
 .active\:bg-gray-100:active {
   --tw-bg-opacity: 1 !important;
   background-color: rgb(243 244 246 / var(--tw-bg-opacity)) !important;

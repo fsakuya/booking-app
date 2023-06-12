@@ -8,6 +8,7 @@ module.exports = {
     './storage/framework/views/*.php',
     './resources/views/**/*.blade.php',
   ],
+  mode: 'jit',
 
   theme: {
     extend: {
@@ -19,7 +20,7 @@ module.exports = {
         customBlue_2: '#0438FE',
         customBlue_3: '#4E7FFF',
       },
-      
+
       outline: ['focus']
     },
   },

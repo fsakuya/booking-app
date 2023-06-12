@@ -51,7 +51,7 @@
                         @csrf
                         <input type="hidden" name="user_id" value="{{ auth()->id() }}">
                         <div class="mb-2">
-                            <input type="date" id="date" name="date"
+                            <input type="date" id="date" name="date" 
                                 class="py-1 px-1 text-xs w-full bg-white rounded border border-gray-300 outline-none text-gray-700 transition-colors duration-200 ease-in-out">
                         </div>
                         <div class="mb-2">
@@ -59,7 +59,7 @@
                                 class="py-1 px-1 text-xs w-full bg-white rounded border border-gray-300 outline-none text-gray-700 transition-colors duration-200 ease-in-out">
                         </div>
                         <div class="mb-2">
-                            <input type="number" id="number" name="number"
+                            <input type="number" id="number" name="number"  min="1"
                                 class="py-1 px-1 text-xs w-full bg-white rounded border border-gray-300 outline-none text-gray-700  transition-colors duration-200 ease-in-out">
                         </div>
                 </div>
@@ -71,20 +71,20 @@
                         </tr>
                         <tr>
                             <th class="w-1/5">Date</th>
-                            <td>日付</td>
+                            <td id="table-date"></td>
                         </tr>
                         <tr>
                             <th class="w-1/5">Time</th>
-                            <td>時間</td>
+                            <td id="table-time"></td>
                         </tr>
                         <tr>
                             <th class="w-1/5">Number</th>
-                            <td>人数</td>
+                            <td id="table-number"></td>
                         </tr>
                     </table>
                 </div>
                 <input type="submit" value="予約する"
-                    class="bg-customBlue_3 p-4 text-white w-full mt-auto mb-0 text-sm rounded-b-md">
+                    class="bg-customBlue_3 p-4 text-white w-full mt-auto mb-0 text-sm rounded-b-md  active:bg-blue-600 transition duration-150 ease-in-out">
             </div>
         </div>
     </section>
