@@ -24,11 +24,12 @@
 <body>
     <div class="min-h-screen bg-gray-100">
         <div class="font-sans text-gray-900 antialiased">
-            <div class="p-4">
+            <div class="px-20 py-4">
                 {{ $slot }}
             </div>
         </div>
     </div>
+    <script src="{{ asset('js/main.js') }}"></script>
 </body>
 
 </html>

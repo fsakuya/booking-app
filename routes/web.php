@@ -1,6 +1,8 @@
 <?php
 
 use App\Http\Controllers\ShopListController;
+use App\Http\Controllers\User\FavoriteController;
+use App\Http\Controllers\User\FavoritiesController;
 use App\Http\Controllers\User\ReserveController;
 use Illuminate\Support\Facades\Route;
 
@@ -19,9 +21,9 @@ use Illuminate\Support\Facades\Route;
 //   return view('user.welcome');
 // });
 
-Route::get('/dashboard', function () {
-  return view('user.dashboard');
-})->middleware(['auth:users'])->name('dashboard');
+// Route::get('/dashboard', function () {
+//   return view('user.dashboard');
+// })->middleware(['auth:users'])->name('dashboard');
 
 Route::get('/menu', function () {
   if (auth()->check()) {
@@ -30,6 +32,7 @@ Route::get('/menu', function () {
     return view('user.menu-not-loggedin');
   }
 });
+
 
 Route::get('/', [ShopListController::class, 'index'])->name('list.index');
 Route::get('/show/{id}', [ShopListController::class, 'show'])->name('list.show');
@@ -40,6 +43,8 @@ Route::middleware('auth:users')->group(function () {
   Route::get('/reserve-done', function () {
     return view('user.reserve-done');
   });
+  Route::post('favorite/{shop}', [FavoriteController::class, 'store'])->name('favorites.store');
+  Route::delete('favorite/{shop}', [FavoriteController::class, 'destroy'])->name('favorites.destroy');
 });
 
 require __DIR__ . '/auth.php';

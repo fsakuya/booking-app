@@ -36,4 +36,9 @@ class Shop extends Model
   {
     return $this->hasOne(Image::class);
   }
+
+  public function favoritedBy()
+  {
+    return $this->belongsToMany(User::class, 'favorites');
+  }
 }
