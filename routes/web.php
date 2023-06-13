@@ -1,8 +1,8 @@
 <?php
 
+use App\Http\Controllers\MypageController;
 use App\Http\Controllers\ShopListController;
 use App\Http\Controllers\User\FavoriteController;
-use App\Http\Controllers\User\FavoritiesController;
 use App\Http\Controllers\User\ReserveController;
 use Illuminate\Support\Facades\Route;
 
@@ -46,5 +46,10 @@ Route::middleware('auth:users')->group(function () {
   Route::post('favorite/{shop}', [FavoriteController::class, 'store'])->name('favorites.store');
   Route::delete('favorite/{shop}', [FavoriteController::class, 'destroy'])->name('favorites.destroy');
 });
+
+Route::middleware('auth:users')->group(function () {
+  Route::get('/mypage', [MypageController::class, 'show'])->name('mypage.show');
+});
+
 
 require __DIR__ . '/auth.php';

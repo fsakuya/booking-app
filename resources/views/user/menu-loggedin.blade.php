@@ -8,7 +8,7 @@
                 <button type="submit">Logout</button>
             </form>
         </div>
-        <a href="" class="mb-4 block">Mypage</a>
+        <a href="{{route('user.mypage.show')}}" class="mb-4 block">Mypage</a>
     </div>
     </div>
 </x-guest-layout>
