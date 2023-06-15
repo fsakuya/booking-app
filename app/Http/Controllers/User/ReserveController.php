@@ -98,6 +98,11 @@ class ReserveController extends Controller
    */
   public function destroy($id)
   {
-    //
+    Reservation::findOrFail($id)->delete();
+
+    return redirect()
+      ->route('user.mypage.show')
+      ->with('success', '予約をキャンセルしました。');
   }
+
 }

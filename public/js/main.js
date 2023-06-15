@@ -42,3 +42,6 @@ document.getElementById('number').addEventListener('change', function () {
   document.querySelector('#table-number').innerText = this.value + '人';
 });
 
+
+
+

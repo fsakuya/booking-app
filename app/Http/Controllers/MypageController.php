@@ -19,6 +19,7 @@ class MypageController extends Controller
     $favorites = $user->favorites;
     $reservedShops = $user->reservations->map(function ($reservation) {
       return [
+        'id' => $reservation->id,
         'shop' => $reservation->shop,
         'date' => $reservation->date,
         'time' => $reservation->time,
@@ -28,6 +29,6 @@ class MypageController extends Controller
 
     // dd($user, $favorites, $reservedShops);
 
-    return view('user.mypage', compact('user','favorites', 'reservedShops'));
+    return view('user.mypage', compact('user', 'favorites', 'reservedShops'));
   }
 }

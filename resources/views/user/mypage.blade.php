@@ -1,6 +1,12 @@
   <x-guest-layout>
       <x-common-header />
-
+      {{-- フラッシュメッセージ --}}
+      @if (session('success'))
+          <div class="alert alert-success text-center bg-red-400 p-4 text-md m-2">
+              {{ session('success') }}
+          </div>
+      @endif
+      {{-- フラッシュメッセージ終わり --}}
       <div class="flex">
           <div class="w-2/5">
           </div>
@@ -18,13 +24,21 @@
                               <img class="h-4 w-4 text-white" src="{{ asset('images/clock-icon.svg') }}">
                           </div>
                           <div class="w-3/5">予約{{ $loop->iteration }}</div>
-                          <div class="w-1/5 text-right">
-                              <svg class="h-4 w-4 text-white" viewBox="0 0 24 24" fill="none" stroke="currentColor"
-                                  stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                                  <circle cx="12" cy="12" r="10" />
-                                  <line x1="15" y1="9" x2="9" y2="15" />
-                                  <line x1="9" y1="9" x2="15" y2="15" />
-                              </svg>
+                          <div class="w-1/5">
+                              <form method="POST" id="cancelForm"
+                                  action="{{ route('user.reserve.cancel', $reservation['id']) }}">
+                                  @csrf
+                                  @method('DELETE')
+                                  <button type="submit" onclick="return confirmCancellation()">
+                                      <svg class="h-4 w-4 text-white" viewBox="0 0 24 24" fill="none"
+                                          stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                          stroke-linejoin="round">
+                                          <circle cx="12" cy="12" r="10" />
+                                          <line x1="15" y1="9" x2="9" y2="15" />
+                                          <line x1="9" y1="9" x2="15" y2="15" />
+                                      </svg>
+                                  </button>
+                              </form>
                           </div>
                       </div>
                       <table>
@@ -109,7 +123,12 @@
                   @endforeach
               </div>
           </div>
-
       </div>
 
   </x-guest-layout>
+
+  <script>
+      function confirmCancellation() {
+          return confirm("本当に予約をキャンセルしますか？");
+      }
+  </script>
