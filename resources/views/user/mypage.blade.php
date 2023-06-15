@@ -25,7 +25,7 @@
                           </div>
                           <div class="w-3/5">予約{{ $loop->iteration }}</div>
                           <div class="w-1/5 flex justify-end">
-                              <form method="POST" id="cancelForm" 
+                              <form method="POST" id="cancelForm"
                                   action="{{ route('user.reserve.cancel', $reservation['id']) }}">
                                   @csrf
                                   @method('DELETE')
@@ -59,10 +59,13 @@
                               <td id="table-number">{{ $reservation['number'] }}<span>人</span></td>
                           </tr>
                       </table>
-                      <button type="button"
-                          class="text-xs mt-3 py-2 px-2 inline-flex justify-center items-center gap-2 rounded-md border font-medium bg-white text-gray-700 shadow-sm align-middle hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-white focus:ring-blue-600 transition-all dark:bg-slate-900 dark:hover:bg-slate-800 dark:border-gray-700 dark:text-gray-400 dark:hover:text-white dark:focus:ring-offset-gray-800">
-                          キャンセルする
-                      </button>
+                      <form method="get" action="{{ route('user.reserve.changeForm', $reservation['id']) }}">
+                          @csrf
+                          <button type="submit"
+                              class="text-xs mt-3 py-2 px-2 inline-flex justify-center items-center gap-2 rounded-md border font-medium bg-white text-gray-700 shadow-sm align-middle hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-white focus:ring-blue-600 transition-all dark:bg-slate-900 dark:hover:bg-slate-800 dark:border-gray-700 dark:text-gray-400 dark:hover:text-white dark:focus:ring-offset-gray-800">
+                              予約を変更する
+                          </button>
+                      </form>
                   </div>
               @endforeach
           </div>
