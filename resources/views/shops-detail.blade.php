@@ -44,7 +44,7 @@
                     <p class="text-sm">{{ $shop->information }}</p>
                 </div>
             </div>
-            <div class="md:w-1/2 w-full bg-customBlue_2 rounded-md ml-20 flex flex-col">
+          <div class="md:w-1/2 w-full bg-customBlue_2 rounded-md ml-20 flex flex-col">
                 <h2 class="px-4 py-6 text-white text-xl font-extrabold title-font">予約</h2>
                 <div class="px-4">
                     <form method="POST" action="{{ route('user.reserve.store', ['id' => $shop->id]) }}">
@@ -85,7 +85,7 @@
                 </div>
                 <input type="submit" value="予約する"
                     class="bg-customBlue_3 p-4 text-white w-full mt-auto mb-0 text-sm rounded-b-md  active:bg-blue-600 transition duration-150 ease-in-out">
-            </div>
+            </div>  
         </div>
     </section>
     </div>

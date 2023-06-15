@@ -28,6 +28,6 @@ class MypageController extends Controller
 
     // dd($user, $favorites, $reservedShops);
 
-    return view('user.mypage', compact('favorites', 'reservedShops'));
+    return view('user.mypage', compact('user','favorites', 'reservedShops'));
   }
 }
