@@ -818,6 +818,18 @@ select {
 .mb-6 {
   margin-bottom: 1.5rem !important;
 }
+.ml-auto {
+  margin-left: auto !important;
+}
+.mr-0 {
+  margin-right: 0px !important;
+}
+.mr-8 {
+  margin-right: 2rem !important;
+}
+.ml-8 {
+  margin-left: 2rem !important;
+}
 .block {
   display: block !important;
 }
@@ -983,6 +995,9 @@ select {
 }
 .flex-wrap {
   flex-wrap: wrap !important;
+}
+.items-end {
+  align-items: flex-end !important;
 }
 .items-center {
   align-items: center !important;
@@ -1280,6 +1295,9 @@ select {
 .pl-4 {
   padding-left: 1rem !important;
 }
+.pr-0 {
+  padding-right: 0px !important;
+}
 .text-left {
   text-align: left !important;
 }
@@ -1288,6 +1306,9 @@ select {
 }
 .text-right {
   text-align: right !important;
+}
+.align-middle {
+  vertical-align: middle !important;
 }
 .font-sans {
   font-family: Nunito, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji" !important;
@@ -1657,12 +1678,21 @@ select {
   --tw-ring-color: rgb(199 210 254 / var(--tw-ring-opacity)) !important;
 }
 
+.focus\:ring-blue-600:focus {
+  --tw-ring-opacity: 1 !important;
+  --tw-ring-color: rgb(37 99 235 / var(--tw-ring-opacity)) !important;
+}
+
 .focus\:ring-opacity-50:focus {
   --tw-ring-opacity: 0.5 !important;
 }
 
 .focus\:ring-offset-2:focus {
   --tw-ring-offset-width: 2px !important;
+}
+
+.focus\:ring-offset-white:focus {
+  --tw-ring-offset-color: #fff !important;
 }
 
 .active\:bg-blue-600:active {
@@ -1711,6 +1741,11 @@ select {
     background-color: rgb(17 24 39 / var(--tw-bg-opacity)) !important;
   }
 
+  .dark\:bg-slate-900 {
+    --tw-bg-opacity: 1 !important;
+    background-color: rgb(15 23 42 / var(--tw-bg-opacity)) !important;
+  }
+
   .dark\:text-gray-400 {
     --tw-text-opacity: 1 !important;
     color: rgb(156 163 175 / var(--tw-text-opacity)) !important;
@@ -1729,6 +1764,16 @@ select {
   .dark\:shadow-slate-700\/\[\.7\] {
     --tw-shadow-color: rgb(51 65 85 / .7) !important;
     --tw-shadow: var(--tw-shadow-colored) !important;
+  }
+
+  .dark\:hover\:bg-slate-800:hover {
+    --tw-bg-opacity: 1 !important;
+    background-color: rgb(30 41 59 / var(--tw-bg-opacity)) !important;
+  }
+
+  .dark\:hover\:text-white:hover {
+    --tw-text-opacity: 1 !important;
+    color: rgb(255 255 255 / var(--tw-text-opacity)) !important;
   }
 
   .dark\:focus\:ring-offset-gray-800:focus {
