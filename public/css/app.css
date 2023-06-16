@@ -712,6 +712,9 @@ select {
 .m-2 {
   margin: 0.5rem !important;
 }
+.m-4 {
+  margin: 1rem !important;
+}
 .mx-4 {
   margin-left: 1rem !important;
   margin-right: 1rem !important;
@@ -723,6 +726,10 @@ select {
 .mx-auto {
   margin-left: auto !important;
   margin-right: auto !important;
+}
+.my-4 {
+  margin-top: 1rem !important;
+  margin-bottom: 1rem !important;
 }
 .-ml-px {
   margin-left: -1px !important;

@@ -41,6 +41,7 @@ Route::post('/search', [ShopListController::class, 'search'])->name('list.search
 Route::middleware('auth:users')->group(function () {
   Route::get('/mypage', [MypageController::class, 'show'])->name('mypage.show');
   Route::get('/mypage/visited', [MypageController::class, 'showVisitedShops'])->name('mypage.showVisitedShops');
+  Route::post('/mypage/review/{id}', [MypageController::class, 'storeReview'])->name('mypage.storeReview');
   
   Route::post('/reserve/{id}', [ReserveController::class, 'store'])->name('reserve.store');
   Route::get('/reserve-done', function () {
