@@ -8,15 +8,33 @@
       @endif
       {{-- フラッシュメッセージ終わり --}}
       <div class="flex">
-          <div class="w-2/5">
+          <div class="w-2/5 pl-4">
           </div>
-          <div class="w-2/5 pl-4 mb-6 font-extrabold text-2xl">
+          <div class="flex justify-between w-2/5 pl-4 mb-6 font-extrabold text-2xl">
               <p>{{ $user->name }}さん</p>
+              <div>
+                  <form method="get" action="{{route('user.mypage.showVisitedShops')}}">
+                      @csrf
+                      <button type="submit"
+                          class="text-xs py-2 px-4 inline-flex justify-center items-center gap-2 rounded-md border font-medium bg-white text-gray-700 shadow-sm align-middle hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-white focus:ring-blue-600 transition-all dark:bg-slate-900 dark:hover:bg-slate-800 dark:border-gray-700 dark:text-gray-400 dark:hover:text-white dark:focus:ring-offset-gray-800">
+                          来店した店舗
+                      </button>
+                    </form>
+                  </div>
+              <div>
+                  <form method="get" action="">
+                      @csrf
+                      <button type="submit"
+                          class="text-xs py-2 px-4 inline-flex justify-center items-center gap-2 rounded-md border font-medium bg-white text-gray-700 shadow-sm align-middle hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-white focus:ring-blue-600 transition-all dark:bg-slate-900 dark:hover:bg-slate-800 dark:border-gray-700 dark:text-gray-400 dark:hover:text-white dark:focus:ring-offset-gray-800">
+                          支払いを行う
+                      </button>
+                  </form>
+              </div>
           </div>
       </div>
       <div class="flex">
           <div class="w-2/5 pl-4">
-              <p class="mb-4 font-extrabold text-xs">予約状況</p>
+              <p class="mb-4 font-extrabold text-sm">予約状況</p>
               @foreach ($reservedShops as $reservation)
                   <div class="w-4/5 bg-customBlue rounded-md p-6 text-white mb-4 text-xs">
                       <div class="flex mb-4">
@@ -71,7 +89,7 @@
           </div>
 
           <div class="w-3/5 pl-4">
-              <p class="mb-4 font-extrabold text-md">お気に入り店舗</p>
+              <p class="mb-4 font-extrabold text-sm">お気に入り店舗</p>
               <div class="flex flex-wrap">
                   @foreach ($favorites as $favorite)
                       <div

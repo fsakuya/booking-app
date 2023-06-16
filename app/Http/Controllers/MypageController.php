@@ -31,4 +31,10 @@ class MypageController extends Controller
 
     return view('user.mypage', compact('user', 'favorites', 'reservedShops'));
   }
+
+  public function showVisitedShops(Request $request) {
+    $visitedShops = Auth::user()->reservations->where('visited', true);
+    // dd($visitedShops);
+    return view('user.mypage-visited', compact('visitedShops'));
+  }
 }
