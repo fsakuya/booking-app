@@ -1,6 +1,8 @@
 <?php
 
+use App\Http\Controllers\MypageController;
 use App\Http\Controllers\ShopListController;
+use App\Http\Controllers\User\FavoriteController;
 use App\Http\Controllers\User\ReserveController;
 use Illuminate\Support\Facades\Route;
 
@@ -19,11 +21,11 @@ use Illuminate\Support\Facades\Route;
 //   return view('user.welcome');
 // });
 
-Route::get('/dashboard', function () {
-  return view('user.dashboard');
-})->middleware(['auth:users'])->name('dashboard');
+// Route::get('/dashboard', function () {
+//   return view('user.dashboard');
+// })->middleware(['auth:users'])->name('dashboard');
 
-Route::get('/mypage', function () {
+Route::get('/menu', function () {
   if (auth()->check()) {
     return view('user.menu-loggedin');
   } else {
@@ -31,15 +33,29 @@ Route::get('/mypage', function () {
   }
 });
 
+
 Route::get('/', [ShopListController::class, 'index'])->name('list.index');
 Route::get('/show/{id}', [ShopListController::class, 'show'])->name('list.show');
 Route::post('/search', [ShopListController::class, 'search'])->name('list.search');
 
 Route::middleware('auth:users')->group(function () {
+  Route::get('/mypage', [MypageController::class, 'show'])->name('mypage.show');
+  Route::get('/mypage/visited', [MypageController::class, 'showVisitedShops'])->name('mypage.showVisitedShops');
+  Route::post('/mypage/review/{id}', [MypageController::class, 'storeReview'])->name('mypage.storeReview');
+  
   Route::post('/reserve/{id}', [ReserveController::class, 'store'])->name('reserve.store');
   Route::get('/reserve-done', function () {
     return view('user.reserve-done');
   });
+  Route::delete('reserve/cancel/{id}', [ReserveController::class, 'destroy'])->name('reserve.cancel');
+  Route::get('/reserve/change/{id}', [ReserveController::class, 'showChangeForm'])->name('reserve.changeForm');
+  Route::post('/reserve/change/{id}', [ReserveController::class, 'change'])->name('reserve.change');
+  
+
+  Route::post('favorite/{shop}', [FavoriteController::class, 'store'])->name('favorites.store');
+  Route::delete('favorite/{shop}', [FavoriteController::class, 'destroy'])->name('favorites.destroy');
+
 });
+
 
 require __DIR__ . '/auth.php';

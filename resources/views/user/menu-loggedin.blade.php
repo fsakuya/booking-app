@@ -1,12 +1,14 @@
 <x-guest-layout>
-    <div class="p-4">
-        <x-common-header />
-        <div class="mx-auto mt-24">
-            <div class="text-xl text-customBlue">
-                <p class="p-2">Home</p>
-                <p class="p-2">Logout</p>
-                <p class="p-2">Mypage</p>
-            </div>
+    <x-menu-header />
+    <div class="text-center mt-24 text-3xl text-customBlue items-center">
+        <a href="/" class="mb-4 block">Home</a>
+        <div class="mb-4 block">
+            <form method="POST" action="{{ route('user.logout') }}">
+                @csrf
+                <button type="submit">Logout</button>
+            </form>
         </div>
+        <a href="{{route('user.mypage.show')}}" class="mb-4 block">Mypage</a>
+    </div>
     </div>
 </x-guest-layout>

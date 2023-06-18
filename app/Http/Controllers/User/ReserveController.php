@@ -85,10 +85,22 @@ class ReserveController extends Controller
    * @param  int  $id
    * @return \Illuminate\Http\Response
    */
-  public function update(Request $request, $id)
+  public function showChangeForm($id)
   {
-    //
+    $reservation = Reservation::find($id);
+    return view('user.reserve-change', compact('reservation'));
   }
+
+  public function change(Request $request, $id)
+  {
+    $reservation = Reservation::find($id);
+    $reservation->date = $request->input('date');
+    $reservation->time = $request->input('time');
+    $reservation->number = $request->input('number');
+    $reservation->save();
+    return redirect()->route('user.mypage.show')->with('success', '予約が変更されました。');
+  }
+
 
   /**
    * Remove the specified resource from storage.
@@ -98,6 +110,10 @@ class ReserveController extends Controller
    */
   public function destroy($id)
   {
-    //
+    Reservation::findOrFail($id)->delete();
+
+    return redirect()
+      ->route('user.mypage.show')
+      ->with('success', '予約をキャンセルしました。');
   }
 }
