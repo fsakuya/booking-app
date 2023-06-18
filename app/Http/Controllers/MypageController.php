@@ -58,4 +58,8 @@ class MypageController extends Controller
 
     return redirect('/mypage/visited')->with('success', '評価を登録しました。');
   }
+
+  public function checkout(){
+    
+  }
 }
