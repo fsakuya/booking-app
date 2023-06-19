@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Review;
+use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -33,13 +34,15 @@ class MypageController extends Controller
     return view('user.mypage', compact('user', 'favorites', 'reservedShops'));
   }
 
-  public function showVisitedShops(Request $request) {
-    $visitedShops = Auth::user()->reservations->where('visited', true);
+  public function showVisitedShops(Request $request)
+  {
+    $visitedShops = Auth::user()->reservations->where('visited', true)->where('checkouted', true);
     // dd($visitedShops);
     return view('user.mypage-visited', compact('visitedShops'));
   }
 
-  public function storeReview(Request $request, $id){
+  public function storeReview(Request $request, $id)
+  {
     // dd($request,$id);
 
     $request->validate([
@@ -59,7 +62,45 @@ class MypageController extends Controller
     return redirect('/mypage/visited')->with('success', '評価を登録しました。');
   }
 
-  public function checkout(){
-    
+  public function showCheckoutForm(Request $request)
+  {
+    $checkoutShops = Auth::user()->reservations->where('visited', true)->where('checkouted', false);
+    return view('user.checkout', compact('checkoutShops'));
+  }
+
+
+  public function processCheckout(Request $request, $id)
+  {
+    $user = User::findOrFail(Auth::id());
+
+    $line_items = [
+      [
+        'price_data' => [
+          'currency' => 'jpy', // 通貨を円に設定
+          'product_data' => [
+            'name' => 'Shop Payment', // 商品名やサービス名を設定（適宜変更してください）
+          ],
+          'unit_amount' => $request->price, // 金額をそのまま設定（Stripeでは日本円は小数点以下を扱わないため）
+        ],
+        'quantity' => 1, // 数量
+      ],
+    ];
+
+    \Stripe\Stripe::setApiKey(env('STRIPE_SECRET_KEY'));
+
+    $session = \Stripe\Checkout\Session::create([
+      'payment_method_types' => ['card'],
+      'line_items' => [$line_items],
+      'mode' => 'payment',
+      'success_url' => route('user.mypage.show'),
+      'cancel_url' => route('user.mypage.checkoutSuccess'),
+      'metadata' => [
+        'shop_id' => $id,
+      ],
+    ]);
+
+    $publicKey = env('STRIPE_PUBLIC_KEY');
+
+    return view('user.checkout-process', compact('session', 'publicKey'));
   }
 }
