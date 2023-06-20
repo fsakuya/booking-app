@@ -19,7 +19,7 @@ class MypageController extends Controller
     $user = Auth::user();
 
     $favorites = $user->favorites;
-    $reservedShops = $user->reservations->map(function ($reservation) {
+    $reservedShops = $user->reservations()->whereNull('checkouted')->get()->map(function ($reservation) {
       return [
         'id' => $reservation->id,
         'shop' => $reservation->shop,
@@ -71,6 +71,7 @@ class MypageController extends Controller
 
   public function processCheckout(Request $request, $id)
   {
+    // dd($request, $id);
     $user = User::findOrFail(Auth::id());
 
     $line_items = [
@@ -92,8 +93,8 @@ class MypageController extends Controller
       'payment_method_types' => ['card'],
       'line_items' => [$line_items],
       'mode' => 'payment',
-      'success_url' => route('user.mypage.show'),
-      'cancel_url' => route('user.mypage.checkoutSuccess'),
+      'success_url' => route('user.mypage.checkoutSuccess'),
+      'cancel_url' => route('user.mypage.show'),
       'metadata' => [
         'shop_id' => $id,
       ],

@@ -43,6 +43,6 @@ class Shop extends Model
   }
   public function reservedShops()
   {
-      return $this->hasMany(Reservation::class, 'reservations');
+    return $this->hasMany(Reservation::class, 'shop_id');
   }
 }

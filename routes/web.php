@@ -52,7 +52,6 @@ Route::middleware('auth:users')->group(function () {
     return view('user.checkout-success');
   })->name('mypage.checkoutSuccess');
 
-  Route::post('/stripe/webhook', [StripeWebhookController::class,'handleWebhook']);
 
 
   Route::post('/reserve/{id}', [ReserveController::class, 'store'])->name('reserve.store');
@@ -67,6 +66,9 @@ Route::middleware('auth:users')->group(function () {
   Route::post('favorite/{shop}', [FavoriteController::class, 'store'])->name('favorites.store');
   Route::delete('favorite/{shop}', [FavoriteController::class, 'destroy'])->name('favorites.destroy');
 });
+
+Route::post('/stripe/webhook', [StripeWebhookController::class,'webhook']);
+
 
 
 require __DIR__ . '/auth.php';
