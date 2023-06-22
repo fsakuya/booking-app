@@ -32,7 +32,7 @@
                 </table>
             </div>
             <div class="flex justify-center pl-4 mt-10 lg:w-2/3 w-full mx-auto">
-                <button
+                <button onclick="location.href='/admin/create'"
                     class="flex text-white bg-indigo-500 border-0 py-2 px-6 focus:outline-none hover:bg-indigo-600 rounded">新規作成
                 </button>
             </div>

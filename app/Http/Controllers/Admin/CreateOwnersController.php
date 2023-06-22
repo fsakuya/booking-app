@@ -33,7 +33,7 @@ class CreateOwnersController extends Controller
      */
     public function create()
     {
-        //
+        
     }
 
     /**

@@ -28,12 +28,14 @@ use Illuminate\Support\Facades\Route;
 // });
 
 Route::get('/dashboard', function () {
-    return view('admin.dashboard');
+  return view('admin.dashboard');
 })->middleware(['auth:admin'])->name('dashboard');
 
 Route::middleware('auth:admin')->group(function () {
   Route::get('/', [CreateOwnersController::class, 'index'])->name('index');
-  Route::get('/create', [CreateOwnersController::class, 'create'])->name('create');
+  Route::get('/create', function () {
+    return view('admin.create');
+  });
   Route::post('/create', [CreateOwnersController::class, 'store'])->name('store');
 });
 
