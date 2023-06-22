@@ -1,6 +1,5 @@
 <?php
 
-use App\Http\Controllers\Admin\CreateAdminController;
 use App\Http\Controllers\Admin\Auth\AuthenticatedSessionController;
 use App\Http\Controllers\Admin\Auth\ConfirmablePasswordController;
 use App\Http\Controllers\Admin\Auth\EmailVerificationNotificationController;
@@ -28,15 +27,16 @@ use Illuminate\Support\Facades\Route;
 //     return view('admin.welcome');
 // });
 
-// Route::get('/dashboard', function () {
-//     return view('admin.dashboard');
-// })->middleware(['auth:admin'])->name('dashboard');
+Route::get('/dashboard', function () {
+    return view('admin.dashboard');
+})->middleware(['auth:admin'])->name('dashboard');
 
-Route::prefix('owners')->middleware('auth:admin')->group(function () {
-  Route::get('/', [CreateOwnersController::class, 'index'])->name('admin.index');
-  Route::get('/create', [CreateOwnersController::class, 'create'])->name('admin.create');
-  Route::post('/create', [CreateOwnersController::class, 'store'])->name('admin.store');
+Route::middleware('auth:admin')->group(function () {
+  Route::get('/', [CreateOwnersController::class, 'index'])->name('index');
+  Route::get('/create', [CreateOwnersController::class, 'create'])->name('create');
+  Route::post('/create', [CreateOwnersController::class, 'store'])->name('store');
 });
+
 
 require __DIR__ . '/auth.php';
 

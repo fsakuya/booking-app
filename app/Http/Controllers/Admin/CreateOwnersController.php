@@ -3,10 +3,17 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Models\Owner;
 use Illuminate\Http\Request;
 
 class CreateOwnersController extends Controller
 {
+
+  public function __construct()
+  {
+    $this->middleware('auth:admin');
+  }
+
     /**
      * Display a listing of the resource.
      *
@@ -14,7 +21,9 @@ class CreateOwnersController extends Controller
      */
     public function index()
     {
-        //
+    $owners = Owner::all();
+
+    return view('admin.index', compact('owners'));
     }
 
     /**
