@@ -14,11 +14,11 @@ class OwnerController extends Controller
     $this->middleware('auth:owners');
   }
 
-  public function index()
+  public function showShops()
   {
     $owner = Auth::user();
-    $shops = $owner->shops;
-
+    $shops = $owner->shop;
+    // dd($shops);
 
     return view('owner.shops', compact('shops'));
   }
@@ -31,5 +31,14 @@ class OwnerController extends Controller
   public function showCode()
   {
     return view('owner.code');
+  }
+
+  public function create()
+  {
+    return view('owner.shopCreate');
+  }
+  public function edit()
+  {
+    return view('owner.shopEdit');
   }
 }

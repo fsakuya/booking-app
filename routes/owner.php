@@ -34,9 +34,11 @@ Route::middleware('auth:owners')->group(function () {
   Route::get('/', function () {
     return view('owner.index');
   });
-  Route::get('/shops', [OwnerController::class, 'index'])->name('shops');
+  Route::get('/shops', [OwnerController::class, 'showShops'])->name('shops');
   Route::get('/reservations', [OwnerController::class, 'showReservations'])->name('showReservations');
   Route::get('/code', [OwnerController::class, 'showCode'])->name('showCode');
+  Route::get('/create', [OwnerController::class, 'create'])->name('create');
+  Route::get('/edit', [OwnerController::class, 'edit'])->name('edit');
 });
 
 
