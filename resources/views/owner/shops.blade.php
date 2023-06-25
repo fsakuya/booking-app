@@ -46,14 +46,14 @@
                                             src="{{ asset('storage/shops/' . $shop->image->filename) }}">
                                     @endif
                                 </td>
-                                <td class="w-1/8 px-2 py-1"><a href='{{ route('owner.edit') }}' class=" text-blue-700 border-b-2 border-blue-700">編集する</a></td>
+                                <td class="w-1/8 px-2 py-1"><a href='{{ route('owner.edit') }}' class=" text-blue-700 border-b-2 border-blue-700">編集</a></td>
                             </tr>
                         @endforeach
                     </tbody>
                 </table>
             </div>
             <div class="flex justify-center pl-4 mt-10 w-full mx-auto">
-                <button onclick="location.href='/admin/create'"
+                <button onclick="location.href='{{route('owner.create')}}'"
                     class="flex text-white bg-indigo-500 border-0 py-2 px-6 focus:outline-none hover:bg-indigo-600 rounded">新規作成
                 </button>
             </div>
