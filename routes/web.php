@@ -4,6 +4,7 @@ use App\Http\Controllers\MypageController;
 use App\Http\Controllers\ShopListController;
 use App\Http\Controllers\User\FavoriteController;
 use App\Http\Controllers\User\ReserveController;
+use App\Http\Controllers\User\StripeWebhookController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -25,6 +26,8 @@ use Illuminate\Support\Facades\Route;
 //   return view('user.dashboard');
 // })->middleware(['auth:users'])->name('dashboard');
 
+
+
 Route::get('/menu', function () {
   if (auth()->check()) {
     return view('user.menu-loggedin');
@@ -42,7 +45,15 @@ Route::middleware('auth:users')->group(function () {
   Route::get('/mypage', [MypageController::class, 'show'])->name('mypage.show');
   Route::get('/mypage/visited', [MypageController::class, 'showVisitedShops'])->name('mypage.showVisitedShops');
   Route::post('/mypage/review/{id}', [MypageController::class, 'storeReview'])->name('mypage.storeReview');
-  
+
+  Route::get('/mypage/checkout', [MypageController::class, 'showCheckoutForm'])->name('mypage.showCheckoutForm');
+  Route::post('/mypage/checkout/process/{id}', [MypageController::class, 'processCheckout'])->name('mypage.processCheckout');
+  Route::get('/mypage/checkout/success', function () {
+    return view('user.checkout-success');
+  })->name('mypage.checkoutSuccess');
+
+
+
   Route::post('/reserve/{id}', [ReserveController::class, 'store'])->name('reserve.store');
   Route::get('/reserve-done', function () {
     return view('user.reserve-done');
@@ -50,12 +61,14 @@ Route::middleware('auth:users')->group(function () {
   Route::delete('reserve/cancel/{id}', [ReserveController::class, 'destroy'])->name('reserve.cancel');
   Route::get('/reserve/change/{id}', [ReserveController::class, 'showChangeForm'])->name('reserve.changeForm');
   Route::post('/reserve/change/{id}', [ReserveController::class, 'change'])->name('reserve.change');
-  
+
 
   Route::post('favorite/{shop}', [FavoriteController::class, 'store'])->name('favorites.store');
   Route::delete('favorite/{shop}', [FavoriteController::class, 'destroy'])->name('favorites.destroy');
-
 });
+
+Route::post('/stripe/webhook', [StripeWebhookController::class,'webhook']);
+
 
 
 require __DIR__ . '/auth.php';
