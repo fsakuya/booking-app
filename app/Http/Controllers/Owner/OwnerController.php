@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Owner;
 use App\Http\Controllers\Controller;
 use App\Models\Owner;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class OwnerController extends Controller
 {
@@ -15,8 +16,10 @@ class OwnerController extends Controller
 
   public function index()
   {
-    $owners = Owner::all();
+    $owner = Auth::user();
+    $shops = $owner->shops;
 
-    return view('admin.index', compact('owners'));
+
+    return view('owner.shops', compact('shops'));
   }
 }
