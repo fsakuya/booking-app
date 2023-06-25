@@ -93,7 +93,7 @@ class MypageController extends Controller
       'payment_method_types' => ['card'],
       'line_items' => [$line_items],
       'mode' => 'payment',
-      'success_url' => route('user.mypage.checkoutSuccess'),
+      'success_url' => route('user.mypage.checkoutSuccess' , ),//予約idを渡す
       'cancel_url' => route('user.mypage.show'),
       'metadata' => [
         'shop_id' => $id,

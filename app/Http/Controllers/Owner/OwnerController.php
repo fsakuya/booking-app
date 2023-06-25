@@ -22,4 +22,14 @@ class OwnerController extends Controller
 
     return view('owner.shops', compact('shops'));
   }
+
+  public function showReservations()
+  {
+    return view('owner.reservations');
+  }
+
+  public function showCode()
+  {
+    return view('owner.code');
+  }
 }

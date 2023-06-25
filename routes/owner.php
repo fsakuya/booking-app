@@ -31,10 +31,12 @@ Route::get('/dashboard', function () {
 })->middleware(['auth:owners'])->name('dashboard');
 
 Route::middleware('auth:owners')->group(function () {
-  Route::get('/', [OwnerController::class, 'index'])->name('index');
+  Route::get('/', function () {
+    return view('owner.index');
+  });
   Route::get('/shops', [OwnerController::class, 'index'])->name('shops');
-  Route::get('/reservations', [OwnerController::class, 'index'])->name('reservations');
-  Route::get('/code', [OwnerController::class, 'index'])->name('code');
+  Route::get('/reservations', [OwnerController::class, 'showReservations'])->name('showReservations');
+  Route::get('/code', [OwnerController::class, 'showCode'])->name('showCode');
 });
 
 
