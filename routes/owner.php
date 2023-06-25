@@ -21,13 +21,30 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('owner.welcome');
-});
+// Route::get('/', function () {
+//     return view('owner.welcome');
+// });
 
 Route::get('/dashboard', function () {
     return view('owner.dashboard');
 })->middleware(['auth:owners'])->name('dashboard');
+
+Route::middleware('auth:owners')->group(function () {
+  Route::get('/', function () {
+    return view('owner.index');
+  });
+  Route::get('/shops', function () {
+    return view('owner.shops');
+  });
+  Route::get('/reservations', function () {
+    return view('owner.reservations');
+  });
+  Route::get('/code', function () {
+    return view('owner.code');
+  });
+});
+
+
 
 require __DIR__.'/auth.php';
 
