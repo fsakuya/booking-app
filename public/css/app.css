@@ -718,6 +718,12 @@ select {
 .m-auto {
   margin: auto !important;
 }
+.-m-2 {
+  margin: -0.5rem !important;
+}
+.m-4 {
+  margin: 1rem !important;
+}
 .mx-4 {
   margin-left: 1rem !important;
   margin-right: 1rem !important;
@@ -920,6 +926,15 @@ select {
 .w-1\/6 {
   width: 16.666667% !important;
 }
+.w-1\/2 {
+  width: 50% !important;
+}
+.w-2\/3 {
+  width: 66.666667% !important;
+}
+.w-32 {
+  width: 8rem !important;
+}
 .max-w-6xl {
   max-width: 72rem !important;
 }
@@ -941,6 +956,12 @@ select {
 .max-w-lg {
   max-width: 32rem !important;
 }
+.max-w-4xl {
+  max-width: 56rem !important;
+}
+.max-w-2xl {
+  max-width: 42rem !important;
+}
 .flex-1 {
   flex: 1 1 0% !important;
 }
@@ -949,6 +970,9 @@ select {
 }
 .table-auto {
   table-layout: auto !important;
+}
+.table-fixed {
+  table-layout: fixed !important;
 }
 .origin-top {
   transform-origin: top !important;
@@ -1004,6 +1028,9 @@ select {
 }
 .justify-between {
   justify-content: space-between !important;
+}
+.justify-around {
+  justify-content: space-around !important;
 }
 .gap-2 {
   gap: 0.5rem !important;
@@ -1147,6 +1174,10 @@ select {
   --tw-border-opacity: 1 !important;
   border-color: rgb(29 78 216 / var(--tw-border-opacity)) !important;
 }
+.border-blue-500 {
+  --tw-border-opacity: 1 !important;
+  border-color: rgb(59 130 246 / var(--tw-border-opacity)) !important;
+}
 .border-opacity-60 {
   --tw-border-opacity: 0.6 !important;
 }
@@ -1194,6 +1225,17 @@ select {
   --tw-bg-opacity: 1 !important;
   background-color: rgb(99 102 241 / var(--tw-bg-opacity)) !important;
 }
+.bg-blue-200 {
+  --tw-bg-opacity: 1 !important;
+  background-color: rgb(191 219 254 / var(--tw-bg-opacity)) !important;
+}
+.bg-blue-100 {
+  --tw-bg-opacity: 1 !important;
+  background-color: rgb(219 234 254 / var(--tw-bg-opacity)) !important;
+}
+.bg-opacity-50 {
+  --tw-bg-opacity: 0.5 !important;
+}
 .fill-current {
   fill: currentColor !important;
 }
@@ -1229,6 +1271,9 @@ select {
 }
 .p-6 {
   padding: 1.5rem !important;
+}
+.p-20 {
+  padding: 5rem !important;
 }
 .px-1 {
   padding-left: 0.25rem !important;
@@ -1289,6 +1334,14 @@ select {
 .py-24 {
   padding-top: 6rem !important;
   padding-bottom: 6rem !important;
+}
+.px-3 {
+  padding-left: 0.75rem !important;
+  padding-right: 0.75rem !important;
+}
+.px-8 {
+  padding-left: 2rem !important;
+  padding-right: 2rem !important;
 }
 .pb-1 {
   padding-bottom: 0.25rem !important;
@@ -1395,6 +1448,9 @@ select {
 }
 .leading-relaxed {
   line-height: 1.625 !important;
+}
+.leading-8 {
+  line-height: 2rem !important;
 }
 .tracking-wider {
   letter-spacing: 0.05em !important;
@@ -1606,6 +1662,11 @@ select {
   background-color: rgb(79 70 229 / var(--tw-bg-opacity)) !important;
 }
 
+.hover\:bg-gray-400:hover {
+  --tw-bg-opacity: 1 !important;
+  background-color: rgb(156 163 175 / var(--tw-bg-opacity)) !important;
+}
+
 .hover\:text-gray-400:hover {
   --tw-text-opacity: 1 !important;
   color: rgb(156 163 175 / var(--tw-text-opacity)) !important;
@@ -1655,6 +1716,11 @@ select {
   border-color: rgb(67 56 202 / var(--tw-border-opacity)) !important;
 }
 
+.focus\:border-indigo-500:focus {
+  --tw-border-opacity: 1 !important;
+  border-color: rgb(99 102 241 / var(--tw-border-opacity)) !important;
+}
+
 .focus\:bg-gray-100:focus {
   --tw-bg-opacity: 1 !important;
   background-color: rgb(243 244 246 / var(--tw-bg-opacity)) !important;
@@ -1668,6 +1734,11 @@ select {
 .focus\:bg-indigo-100:focus {
   --tw-bg-opacity: 1 !important;
   background-color: rgb(224 231 255 / var(--tw-bg-opacity)) !important;
+}
+
+.focus\:bg-white:focus {
+  --tw-bg-opacity: 1 !important;
+  background-color: rgb(255 255 255 / var(--tw-bg-opacity)) !important;
 }
 
 .focus\:text-gray-500:focus {
@@ -1894,6 +1965,11 @@ select {
     padding-right: 1.5rem !important;
   }
 
+  .sm\:px-12 {
+    padding-left: 3rem !important;
+    padding-right: 3rem !important;
+  }
+
   .sm\:pt-0 {
     padding-top: 0px !important;
   }
@@ -1990,6 +2066,11 @@ select {
   .lg\:px-8 {
     padding-left: 2rem !important;
     padding-right: 2rem !important;
+  }
+
+  .lg\:px-16 {
+    padding-left: 4rem !important;
+    padding-right: 4rem !important;
   }
 }
 
