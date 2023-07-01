@@ -49,6 +49,8 @@ class OwnerController extends Controller
       'genre' => 'required',
       'area' => 'required',
       'information' => 'required|string|max:1000',
+      'image' => 'nullable|image|max:2048',
+
     ]);
     $shop = new Shop();
 
@@ -63,11 +65,11 @@ class OwnerController extends Controller
     $imageFile = $request->image; //一時保存
 
     if (!is_null($imageFile) && $imageFile->isValid()) {
-      $fileName = uniqid(rand().'_');
+      $fileName = uniqid(rand() . '_');
       $extension = $imageFile->extension();
-      $fileNameToStore = $fileName. '.' . $extension;
+      $fileNameToStore = $fileName . '.' . $extension;
       $resizedImage = InterventionImage::make($imageFile)->resize(1920, 1080)->encode();
-      Storage::put('public/shops/' . $fileNameToStore, $resizedImage );
+      Storage::put('public/shops/' . $fileNameToStore, $resizedImage);
       $image = new Image();
       $image->filename = $fileNameToStore;
       $shop->image()->save($image);
@@ -79,8 +81,57 @@ class OwnerController extends Controller
   }
 
 
-  public function edit()
+  public function edit($id)
   {
-    return view('owner.shopEdit');
+    $shop = Shop::findOrFail($id);
+    // dd($shop);
+
+    return view('owner.shopEdit', compact('shop'));
+  }
+
+  public function update(Request $request, $id)
+  {
+    $shop = Shop::findOrFail($id);
+
+    $request->validate([
+      'name' => 'required|max:255',
+      'area' => 'required',
+      'genre' => 'required',
+      'information' => 'required',
+      'image' => 'nullable|image|max:2048',
+    ]);
+
+    $shop->owner_id = Auth::id();  // ログインユーザーのIDを取得
+    $shop->name = $request->name;
+    $shop->area_id = $request->area;
+    $shop->genre_id = $request->genre;
+    $shop->information = $request->information;
+
+    $shop->save();
+
+    $imageFile = $request->image; //一時保存
+
+    if (!is_null($imageFile) && $imageFile->isValid()) {
+      // 既存の画像がある場合は削除する
+      $existingImage = $shop->image;
+      if ($existingImage) {
+        Storage::delete('public/shops/' . $existingImage->filename);
+        $existingImage->delete();
+      }
+
+      // 新しい画像を保存する
+      $fileName = uniqid(rand() . '_');
+      $extension = $imageFile->extension();
+      $fileNameToStore = $fileName . '.' . $extension;
+      $resizedImage = InterventionImage::make($imageFile)->resize(1920, 1080)->encode();
+      Storage::put('public/shops/' . $fileNameToStore, $resizedImage);
+      $image = new Image();
+      $image->filename = $fileNameToStore;
+      $shop->image()->save($image);
+    }
+
+    return redirect()
+      ->route('owner.shops')
+      ->with(['message' => '店舗情報を更新しました。']);
   }
 }

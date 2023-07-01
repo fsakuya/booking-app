@@ -39,7 +39,9 @@ Route::middleware('auth:owners')->group(function () {
   Route::get('/code', [OwnerController::class, 'showCode'])->name('showCode');
   Route::get('/create', [OwnerController::class, 'create'])->name('create');
   Route::post('/store', [OwnerController::class, 'store'])->name('store');
-  Route::get('/edit', [OwnerController::class, 'edit'])->name('edit');
+  Route::get('/edit/{id}', [OwnerController::class, 'edit'])->name('edit');
+  Route::put('/update/{id}', [OwnerController::class, 'update'])->name('update');
+
 });
 
 

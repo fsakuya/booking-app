@@ -37,8 +37,8 @@
                         @foreach ($shops as $shop)
                             <tr>
                                 <td class="w-1/8 px-2 py-1">{{ $shop->name }}</td>
-                                <td class="w-1/8 px-2 py-1">{{ $shop->area_id }}</td>
-                                <td class="w-1/8 px-2 py-1">{{ $shop->genre_id }}</td>
+                                <td class="w-1/8 px-2 py-1">{{ $shop->area->name }}</td>
+                                <td class="w-1/8 px-2 py-1">{{ $shop->genre->name }}</td>
                                 <td class="w-1/4 px-2 py-1 overflow-hidden overflow-ellipsis">
                                     {{ $shop->information }}
                                 </td>
@@ -51,8 +51,10 @@
                                             src="{{ asset('storage/shops/' . $shop->image->filename) }}">
                                     @endif
                                 </td>
-                                <td class="w-1/8 px-2 py-1"><a href='{{ route('owner.edit') }}'
-                                        class=" text-blue-700 border-b-2 border-blue-700">編集</a></td>
+                                <td class="w-1/8 px-2 py-1">
+                                    <a href='{{ route('owner.edit', ['id' => $shop->id]) }}'
+                                        class=" text-blue-700 border-b-2 border-blue-700">編集</a>
+                                </td>
                             </tr>
                         @endforeach
                     </tbody>
