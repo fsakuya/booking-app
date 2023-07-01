@@ -48,16 +48,10 @@
                     </div>
                     <div class="p-2 w-2/3 mx-auto">
                         <div class="relative">
-                            <label for="image" class="leading-7 text-sm text-gray-600">登録している画像</label>
-                            <div>
-                                @if (!empty($shop->image->filename))
-                                    <img src="{{ asset('storage/shops/' . $shop->image->filename) }}" alt="Shop Image"
-                                        class="mb-4">
-                                @else
-                                    <img src="{{ asset('images/no_image.jpg') }}" alt="No Image" class="mb-4">
-                                @endif
-                            </div>
-                            <input type="file" id="image" name="image" accept="image/png,image/jpeg,image/jpg">
+                            <label for="image" class="leading-7 text-sm text-gray-600">画像</label>
+                            <img id="image_preview" class="lg:h-48 md:h-36 w-full h-full object-contain"
+                                src="{{ empty($shop->image->filename) ? asset('images/no_image.jpg') : asset('storage/shops/' . $shop->image->filename) }}">
+                            <input type="file" id="image_upload" name="image" class="mt-4">
                         </div>
                     </div>
                     <div class="flex justify-center pl-4 mt-10 w-full mx-auto">
@@ -69,6 +63,16 @@
         </div>
         </form>
     </div>
-    </div>
-    </div>
 </x-guest-layout>
+
+<script>
+    document.getElementById('image_upload').addEventListener('change', function(e) {
+        let reader = new FileReader();
+
+        reader.onload = function(event) {
+            document.getElementById('image_preview').src = event.target.result;
+        }
+
+        reader.readAsDataURL(e.target.files[0]);
+    });
+</script>

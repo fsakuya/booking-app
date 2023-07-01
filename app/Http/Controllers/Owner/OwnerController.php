@@ -68,7 +68,7 @@ class OwnerController extends Controller
       $fileName = uniqid(rand() . '_');
       $extension = $imageFile->extension();
       $fileNameToStore = $fileName . '.' . $extension;
-      $resizedImage = InterventionImage::make($imageFile)->resize(1920, 1080)->encode();
+      $resizedImage = InterventionImage::make($imageFile)->resize(1920, 1280)->encode();
       Storage::put('public/shops/' . $fileNameToStore, $resizedImage);
       $image = new Image();
       $image->filename = $fileNameToStore;
@@ -114,6 +114,7 @@ class OwnerController extends Controller
     if (!is_null($imageFile) && $imageFile->isValid()) {
       // 既存の画像がある場合は削除する
       $existingImage = $shop->image;
+      // dd($existingImage);
       if ($existingImage) {
         Storage::delete('public/shops/' . $existingImage->filename);
         $existingImage->delete();
@@ -123,7 +124,7 @@ class OwnerController extends Controller
       $fileName = uniqid(rand() . '_');
       $extension = $imageFile->extension();
       $fileNameToStore = $fileName . '.' . $extension;
-      $resizedImage = InterventionImage::make($imageFile)->resize(1920, 1080)->encode();
+      $resizedImage = InterventionImage::make($imageFile)->resize(1920, 1280)->encode();
       Storage::put('public/shops/' . $fileNameToStore, $resizedImage);
       $image = new Image();
       $image->filename = $fileNameToStore;
