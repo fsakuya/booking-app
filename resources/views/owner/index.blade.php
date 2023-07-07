@@ -4,9 +4,9 @@
       <a href={{ route('owner.shops')}} class="block mb-4">
           <p>店舗情報</p>
       </a>
-      <a href={{ route('owner.showReservations')}} class="block mb-4">
+      {{-- <a href={{ route('owner.showReservations')}} class="block mb-4">
           <p>予約一覧</p>
-      </a>
+      </a> --}}
       <a href={{ route('owner.showCode')}} class="block mb-4">
           <p>QRコード照会</p>
       </a>

@@ -35,7 +35,7 @@ Route::middleware('auth:owners')->group(function () {
     return view('owner.index');
   });
   Route::get('/shops', [OwnerController::class, 'showShops'])->name('shops');
-  Route::get('/reservations', [OwnerController::class, 'showReservations'])->name('showReservations');
+  Route::get('/reservations/{id}', [OwnerController::class, 'showReservations'])->name('showReservations');
   Route::get('/code', [OwnerController::class, 'showCode'])->name('showCode');
   Route::get('/create', [OwnerController::class, 'create'])->name('create');
   Route::post('/store', [OwnerController::class, 'store'])->name('store');

@@ -41,8 +41,8 @@ class Shop extends Model
   {
     return $this->belongsToMany(User::class, 'favorites');
   }
-  public function reservedShops()
+  public function reservations()
   {
-    return $this->hasMany(Reservation::class, 'shop_id');
+    return $this->hasMany(Reservation::class);
   }
 }

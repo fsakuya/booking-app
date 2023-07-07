@@ -55,6 +55,10 @@
                                     <a href='{{ route('owner.edit', ['id' => $shop->id]) }}'
                                         class=" text-blue-700 border-b-2 border-blue-700">編集</a>
                                 </td>
+                                <td class="w-1/8 px-2 py-1">
+                                  <a href='{{ route('owner.showReservations', ['id' => $shop->id]) }}'
+                                      class=" text-blue-700 border-b-2 border-blue-700">予約一覧</a>
+                              </td>
                             </tr>
                         @endforeach
                     </tbody>

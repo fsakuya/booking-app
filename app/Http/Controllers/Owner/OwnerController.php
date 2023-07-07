@@ -28,10 +28,15 @@ class OwnerController extends Controller
     return view('owner.shops', compact('shops'));
   }
 
-  public function showReservations()
+  public function showReservations($id)
   {
-    return view('owner.reservations');
+    $shop = Shop::findOrFail($id);
+    $reservations = $shop->reservations;
+
+    return view('owner.reservations', compact('reservations'));
   }
+
+
 
   public function showCode()
   {
