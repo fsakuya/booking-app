@@ -3,11 +3,14 @@
 namespace App\Http\Controllers\Owner;
 
 use App\Http\Controllers\Controller;
+use App\Mail\UserMail;
 use App\Models\Image;
 use App\Models\Owner;
 use App\Models\Shop;
+use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Storage;
 use InterventionImage;
 
@@ -139,5 +142,37 @@ class OwnerController extends Controller
     return redirect()
       ->route('owner.shops')
       ->with(['message' => '店舗情報を更新しました。']);
+  }
+
+  public function createMail($id)
+  {
+    $user = User::findOrFail($id);
+    // dd($user);
+    return view('owner.createMail', compact('user'));
+  }
+
+  public function sendMail(Request $request)
+  {
+
+    //   $validated = $request->validate([
+    //     'title' => 'required|unique:posts|max:255',
+    //     'body' => 'required',
+    // ]);
+
+    // dd($request);
+    $name = $request->username;
+    $email = $request->useremail;
+    $subject = $request->subject;
+    $message = $request->message;
+
+    // dd($name, $email, $message, $subject);
+    Mail::send(new UserMail($name, $email, $message, $subject));
+
+    $shops = Shop::where('owner_id', Auth::id())->get();
+
+    return redirect()
+      ->route('owner.shops',compact('shops'))
+      ->with(['message' => 'メッセージを送信しました。']);
+
   }
 }
