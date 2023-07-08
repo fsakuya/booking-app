@@ -166,7 +166,9 @@ class OwnerController extends Controller
     $message = $request->message;
 
     // dd($name, $email, $message, $subject);
-    Mail::send(new UserMail($name, $email, $message, $subject));
+
+    Mail::to($request->useremail)
+    ->send(new UserMail($name, $email, $message, $subject));
 
     $shops = Shop::where('owner_id', Auth::id())->get();
 
