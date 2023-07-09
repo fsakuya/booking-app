@@ -12,6 +12,7 @@ class ShopListController extends Controller
 
   public function index()
   {
+    
     $shops = Shop::all();
     $areas = Area::all();
     $genres = Genre::all();

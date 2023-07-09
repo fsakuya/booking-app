@@ -1,3 +1,8 @@
+<?php
+phpinfo();
+?>
+
+
 <x-guest-layout>
     <div class="flex justify-between">
         <x-common-header />
