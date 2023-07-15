@@ -1012,6 +1012,9 @@ select {
 .overflow-ellipsis {
   text-overflow: ellipsis !important;
 }
+.break-all {
+  word-break: break-all !important;
+}
 .rounded {
   border-radius: 0.25rem !important;
 }

@@ -6,6 +6,8 @@ use App\Http\Controllers\User\FavoriteController;
 use App\Http\Controllers\User\ReserveController;
 use App\Http\Controllers\User\StripeWebhookController;
 use Illuminate\Support\Facades\Route;
+use Illuminate\Foundation\Auth\EmailVerificationRequest;
+use Illuminate\Http\Request;
 
 /*
 |--------------------------------------------------------------------------
@@ -41,7 +43,8 @@ Route::get('/', [ShopListController::class, 'index'])->name('list.index');
 Route::get('/show/{id}', [ShopListController::class, 'show'])->name('list.show');
 Route::post('/search', [ShopListController::class, 'search'])->name('list.search');
 
-Route::middleware('auth:users')->group(function () {
+Route::middleware('auth:users')->group(function () 
+{
   Route::get('/mypage', [MypageController::class, 'show'])->name('mypage.show');
   Route::get('/mypage/visited', [MypageController::class, 'showVisitedShops'])->name('mypage.showVisitedShops');
   Route::post('/mypage/review/{id}', [MypageController::class, 'storeReview'])->name('mypage.storeReview');
@@ -68,6 +71,9 @@ Route::middleware('auth:users')->group(function () {
 });
 
 Route::post('/stripe/webhook', [StripeWebhookController::class,'webhook']);
+
+
+
 
 
 
