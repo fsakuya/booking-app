@@ -1,2 +1,2 @@
 <p>{{ $name }}さん</p>
-<p>{{ $userMessage }}</p>
+<p>{{ $Message }}</p>

@@ -41,7 +41,7 @@ class UserMail extends Mailable
       ->view('owner.sendMail')
       ->with([
         'name' => $this->name,
-        'userMessage' => $this->message,
+        'Message' => $this->message,
       ]);
   }
 }
