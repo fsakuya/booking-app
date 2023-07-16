@@ -43,7 +43,7 @@ Route::get('/', [ShopListController::class, 'index'])->name('list.index');
 Route::get('/show/{id}', [ShopListController::class, 'show'])->name('list.show');
 Route::post('/search', [ShopListController::class, 'search'])->name('list.search');
 
-Route::middleware('auth:users')->group(function () 
+Route::middleware('auth:users', 'verified')->group(function () 
 {
   Route::get('/mypage', [MypageController::class, 'show'])->name('mypage.show');
   Route::get('/mypage/visited', [MypageController::class, 'showVisitedShops'])->name('mypage.showVisitedShops');
