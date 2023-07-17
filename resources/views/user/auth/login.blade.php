@@ -14,7 +14,7 @@
             </div>
             <div class="p-4 md:p-5">
                 <x-auth-validation-errors class="mb-4" :errors="$errors" />
-                <form method="POST" action="{{ route('user.login') }}">
+                <form method="POST" action="{{ route('user.login') }}" novalidate>
                     @csrf
                     <div>
                         <div class="flex">
