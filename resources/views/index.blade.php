@@ -6,13 +6,13 @@
     <section>
         <div class="flex flex-wrap mx-[-1rem]">
             @foreach ($shops as $shop)
-                <div class="md:w-1/4 px-[1rem] py-3">
+                <div class="md:w-1/4 px-2 py-3">
                     <div class=" bg-white shadow-2 border-2 border-gray-200 border-opacity-60 rounded-lg overflow-hidden">
                         @if (empty($shop->image->filename))
-                            <img class="lg:h-48 md:h-36 w-full h-full object-contain"
+                            <img class="w-full h-full object-contain"
                                 src="{{ asset('images/no_image.jpg') }}">
                         @else
-                            <img class="lg:h-48 md:h-36 w-full h-full object-contain"
+                            <img class="w-full h-full object-contain"
                                 src="{{ asset('storage/shops/' . $shop->image->filename) }}">
                         @endif
                         <div class="p-2">
