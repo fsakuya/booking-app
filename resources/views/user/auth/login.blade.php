@@ -1,6 +1,7 @@
 <x-guest-layout>
+  <div class="mb-20">
     <x-common-header />
-
+  </div>
     <!-- Session Status -->
     <x-auth-session-status class="mb-4" :status="session('status')" />
     <div class="max-w-sm mx-auto">

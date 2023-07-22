@@ -1,5 +1,7 @@
 <x-guest-layout>
-    <x-common-header />
+    <div class="mb-20">
+        <x-common-header />
+    </div>
 
     <div class="max-w-sm mx-auto">
         <div
