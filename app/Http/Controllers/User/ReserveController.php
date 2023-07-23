@@ -6,6 +6,8 @@ use App\Http\Controllers\Controller;
 use App\Models\Reservation;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Storage;
+use SimpleSoftwareIO\QrCode\Facades\QrCode;
 
 class ReserveController extends Controller
 {
@@ -50,6 +52,17 @@ class ReserveController extends Controller
     $reservation->date = $request->date;
     $reservation->time = $request->time;
     $reservation->number = $request->number;
+
+    // Convert the reservation information to a string
+    $reservation_info = "User ID: {$reservation->user_id}, Shop ID: {$reservation->shop_id}, Date: {$reservation->date}, Time: {$reservation->time}, Number: {$reservation->number}";
+
+    // Generate QR code with the reservation information
+    $qr_code = QrCode::format('png')->size(100)->generate($reservation_info);
+    // Save the QR code
+    $path = "public/qr-codes/reservation_{$reservation->user_id}_{$reservation->shop_id}.png";
+    Storage::put($path, $qr_code);
+
+    $reservation->codename = $path;
 
     $reservation->save();
 

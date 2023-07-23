@@ -8,7 +8,9 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
 
-class User extends Authenticatable
+
+
+class User extends Authenticatable implements MustVerifyEmail
 {
   use HasApiTokens, HasFactory, Notifiable;
 
@@ -51,4 +53,15 @@ class User extends Authenticatable
   {
       return $this->hasMany(Reservation::class);
   }
+
+  /**
+ * Send the email verification notification.
+ *
+ * @return void
+ */
+public function sendEmailVerificationNotification()
+{
+    $this->notify(new \App\Notifications\VerifyEmail);  // use your correct namespace here
+}
+
 }

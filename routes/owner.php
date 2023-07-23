@@ -8,6 +8,7 @@ use App\Http\Controllers\Owner\Auth\NewPasswordController;
 use App\Http\Controllers\Owner\Auth\PasswordResetLinkController;
 use App\Http\Controllers\Owner\Auth\RegisteredUserController;
 use App\Http\Controllers\Owner\Auth\VerifyEmailController;
+use App\Http\Controllers\Owner\OwnerController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -21,61 +22,78 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('owner.welcome');
-});
+// Route::get('/', function () {
+//     return view('owner.welcome');
+// });
 
 Route::get('/dashboard', function () {
-    return view('owner.dashboard');
+  return view('owner.dashboard');
 })->middleware(['auth:owners'])->name('dashboard');
 
-require __DIR__.'/auth.php';
+Route::middleware('auth:owners')->group(function () {
+  Route::get('/', function () {
+    return view('owner.index');
+  });
+  Route::get('/shops', [OwnerController::class, 'showShops'])->name('shops');
+  Route::get('/reservations/{id}', [OwnerController::class, 'showReservations'])->name('showReservations');
+  Route::get('/code', [OwnerController::class, 'showCode'])->name('showCode');
+  Route::get('/create', [OwnerController::class, 'create'])->name('create');
+  Route::post('/store', [OwnerController::class, 'store'])->name('store');
+  Route::get('/edit/{id}', [OwnerController::class, 'edit'])->name('edit');
+  Route::put('/update/{id}', [OwnerController::class, 'update'])->name('update');
+  Route::get('/mail/{id}', [OwnerController::class, 'createMail'])->name('mail.create');
+  Route::post('/mail/send', [OwnerController::class, 'sendMail'])->name('mail.send');
+
+});
+
+
+
+require __DIR__ . '/auth.php';
 
 
 
 
 Route::middleware('guest')->group(function () {
-    Route::get('register', [RegisteredUserController::class, 'create'])
-                ->name('register');
+  Route::get('register', [RegisteredUserController::class, 'create'])
+    ->name('register');
 
-    Route::post('register', [RegisteredUserController::class, 'store']);
+  Route::post('register', [RegisteredUserController::class, 'store']);
 
-    Route::get('login', [AuthenticatedSessionController::class, 'create'])
-                ->name('login');
+  Route::get('login', [AuthenticatedSessionController::class, 'create'])
+    ->name('login');
 
-    Route::post('login', [AuthenticatedSessionController::class, 'store']);
+  Route::post('login', [AuthenticatedSessionController::class, 'store']);
 
-    Route::get('forgot-password', [PasswordResetLinkController::class, 'create'])
-                ->name('password.request');
+  Route::get('forgot-password', [PasswordResetLinkController::class, 'create'])
+    ->name('password.request');
 
-    Route::post('forgot-password', [PasswordResetLinkController::class, 'store'])
-                ->name('password.email');
+  Route::post('forgot-password', [PasswordResetLinkController::class, 'store'])
+    ->name('password.email');
 
-    Route::get('reset-password/{token}', [NewPasswordController::class, 'create'])
-                ->name('password.reset');
+  Route::get('reset-password/{token}', [NewPasswordController::class, 'create'])
+    ->name('password.reset');
 
-    Route::post('reset-password', [NewPasswordController::class, 'store'])
-                ->name('password.update');
+  Route::post('reset-password', [NewPasswordController::class, 'store'])
+    ->name('password.update');
 });
 
 Route::middleware('auth:owners')->group(function () {
-    Route::get('verify-email', [EmailVerificationPromptController::class, '__invoke'])
-                ->name('verification.notice');
+  Route::get('verify-email', [EmailVerificationPromptController::class, '__invoke'])
+    ->name('verification.notice');
 
-    Route::get('verify-email/{id}/{hash}', [VerifyEmailController::class, '__invoke'])
-                ->middleware(['signed', 'throttle:6,1'])
-                ->name('verification.verify');
+  Route::get('verify-email/{id}/{hash}', [VerifyEmailController::class, '__invoke'])
+    ->middleware(['signed', 'throttle:6,1'])
+    ->name('verification.verify');
 
-    Route::post('email/verification-notification', [EmailVerificationNotificationController::class, 'store'])
-                ->middleware('throttle:6,1')
-                ->name('verification.send');
+  Route::post('email/verification-notification', [EmailVerificationNotificationController::class, 'store'])
+    ->middleware('throttle:6,1')
+    ->name('verification.send');
 
-    Route::get('confirm-password', [ConfirmablePasswordController::class, 'show'])
-                ->name('password.confirm');
+  Route::get('confirm-password', [ConfirmablePasswordController::class, 'show'])
+    ->name('password.confirm');
 
-    Route::post('confirm-password', [ConfirmablePasswordController::class, 'store']);
+  Route::post('confirm-password', [ConfirmablePasswordController::class, 'store']);
 
-    Route::post('logout', [AuthenticatedSessionController::class, 'destroy'])
-                ->name('logout');
+  Route::post('logout', [AuthenticatedSessionController::class, 'destroy'])
+    ->name('logout');
 });
-
