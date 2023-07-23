@@ -24,9 +24,6 @@ use Illuminate\Http\Request;
 //   return view('user.welcome');
 // });
 
-// Route::get('/dashboard', function () {
-//   return view('user.dashboard');
-// })->middleware(['auth:users'])->name('dashboard');
 
 
 
@@ -45,6 +42,10 @@ Route::post('/search', [ShopListController::class, 'search'])->name('list.search
 
 Route::middleware('auth:users', 'verified')->group(function () 
 {
+  
+Route::get('/dashboard', function () {
+  return view('user.dashboard');
+});
   Route::get('/mypage', [MypageController::class, 'show'])->name('mypage.show');
   Route::get('/mypage/visited', [MypageController::class, 'showVisitedShops'])->name('mypage.showVisitedShops');
   Route::post('/mypage/review/{id}', [MypageController::class, 'storeReview'])->name('mypage.storeReview');

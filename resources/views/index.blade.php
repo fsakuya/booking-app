@@ -48,7 +48,7 @@
                                         詳しく見る
                                     </a>
                                     <button class="favorite-button w-6 h-6 p-0" data-shop-id="{{ $shop->id }}">
-                                        @if (Auth::user() && Auth::user()->favorites->contains($shop->id))
+                                      @if (Auth::user() && Auth::user()->favorites && Auth::user()->favorites->contains($shop->id))
                                             <img class="w-full h-full" src="{{ asset('images/heart-red.svg') }}">
                                         @else
                                             <img class="w-full h-full" src="{{ asset('images/heart-gray.svg') }}">
