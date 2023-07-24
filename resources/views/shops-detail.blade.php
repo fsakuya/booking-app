@@ -9,6 +9,15 @@
                         <span class="text-lg">&lt;</span>
                     </button>
                     <p class="text-2xl font-extrabold ">{{ $shop->name }}</p>
+                    <div>
+                      <form method="get" action="{{ route('user.list.review', $shop->id) }}">
+                          @csrf
+                          <button type="submit"
+                              class="ml-10 text-xs py-2 px-4 inline-flex justify-center items-center gap-2 rounded-md border font-medium bg-white text-gray-700 shadow-sm align-middle hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-white focus:ring-blue-600 transition-all dark:bg-slate-900 dark:hover:bg-slate-800 dark:border-gray-700 dark:text-gray-400 dark:hover:text-white dark:focus:ring-offset-gray-800">
+                              評価を見る
+                          </button>
+                      </form>
+                  </div>
                 </div>
                 @if (empty($shop->image->filename))
                     <img class="object-cover object-center rounded mb-4" src="{{ asset('images/no_image.jpg') }}">

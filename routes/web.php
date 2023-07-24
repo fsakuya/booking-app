@@ -38,7 +38,9 @@ Route::get('/menu', function () {
 
 Route::get('/', [ShopListController::class, 'index'])->name('list.index');
 Route::get('/show/{id}', [ShopListController::class, 'show'])->name('list.show');
+Route::get('/reviews/{id}', [ShopListController::class, 'showReviews'])->name('list.review');
 Route::post('/search', [ShopListController::class, 'search'])->name('list.search');
+
 
 Route::middleware('auth:users')->group(function () 
 {
@@ -69,6 +71,7 @@ Route::get('/dashboard', function () {
 
   Route::post('favorite/{shop}', [FavoriteController::class, 'store'])->name('favorites.store');
   Route::delete('favorite/{shop}', [FavoriteController::class, 'destroy'])->name('favorites.destroy');
+
 });
 
 Route::post('/stripe/webhook', [StripeWebhookController::class,'webhook']);
