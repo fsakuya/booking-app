@@ -1,5 +1,5 @@
 <x-guest-layout>
-    <div class="flex justify-between mb-4">
+    <div class="flex items-center justify-between mb-4">
         <x-common-header />
         <x-search-box :areas="$areas" :genres="$genres" />
     </div>
@@ -15,20 +15,19 @@
                             <img class="w-full h-full object-contain"
                                 src="{{ asset('storage/shops/' . $shop->image->filename) }}">
                         @endif
-                        <div class="p-2">
-                            <h1 class="title-font text-lg font-medium text-gray-900">{{ $shop->name }}</h1>
-                            <div class="p-1 md:p-2">
-                                <div class="flex">
-                                    <div class="text-sm badge badge-outline"><span>#</span>
+                        <div class="p-4">
+                            <h1 class="title-font text-lg font-bold text-gray-900">{{ $shop->name }}</h1>
+                                <div class="flex mt-1">
+                                    <div class="text-xs badge badge-outline font-medium"><span>#</span>
                                         @if ($shop->area_id == 1)
-                                            東京
+                                            東京都
                                         @elseif ($shop->area_id == 2)
-                                            大阪
+                                            大阪府
                                         @elseif ($shop->area_id == 3)
-                                            福岡
+                                            福岡県
                                         @endif
                                     </div>
-                                    <div class="text-sm badge badge-outline"><span>#</span>
+                                    <div class="ml-2 text-xs badge badge-outline font-medium"><span>#</span>
                                         @if ($shop->genre_id == 1)
                                             イタリアン
                                         @elseif ($shop->genre_id == 2)
@@ -42,12 +41,12 @@
                                         @endif
                                     </div>
                                 </div>
-                                <div class="flex items-center justify-between pt-2">
+                                <div class="flex items-center justify-between pt-4 mb-2">
                                     <a href="{{ route('user.list.show', $shop->id) }}"
-                                        class="py-3 px-4 inline-flex justify-center items-center gap-2 rounded-md border border-transparent font-semibold bg-blue-500 text-white hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 transition-all text-sm dark:focus:ring-offset-gray-800">
-                                        詳しく見る
+                                        class="py-2 px-4 inline-flex justify-center items-center gap-2 rounded-md border border-transparent bg-customBlue text-white hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 transition-all text-sm dark:focus:ring-offset-gray-800">
+                                        詳しくみる
                                     </a>
-                                    <button class="favorite-button w-6 h-6 p-0" data-shop-id="{{ $shop->id }}">
+                                    <button class="favorite-button w-8 h-8 p-0" data-shop-id="{{ $shop->id }}">
                                       @if (Auth::user() && Auth::user()->favorites && Auth::user()->favorites->contains($shop->id))
                                             <img class="w-full h-full" src="{{ asset('images/heart-red.svg') }}">
                                         @else
@@ -55,7 +54,6 @@
                                         @endif
                                     </button>
                                 </div>
-                            </div>
                         </div>
                     </div>
                 </div>
