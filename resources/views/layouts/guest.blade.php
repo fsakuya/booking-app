@@ -20,6 +20,8 @@
     <link rel="stylesheet" href="{{ asset('css/recet.css') }}">
     <link rel="stylesheet" href="{{ asset('css/app.css') }}">
 
+    <link href="/dist/styles.css" rel="stylesheet">
+
 </head>
 
 <body class="font-noto">

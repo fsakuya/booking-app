@@ -20,8 +20,9 @@ module.exports = {
       },
       colors: {
         customBlue: '#2F5DFF',
-        customBlue_2: '#0438FE',
+        customBlue_2: '#305DFF',
         customBlue_3: '#4E7FFF',
+        customBlue_4: '#0438FE',
       },
 
       outline: ['focus']
