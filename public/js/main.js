@@ -42,6 +42,8 @@ document.getElementById('number').addEventListener('change', function () {
   document.querySelector('#table-number').innerText = this.value + '人';
 });
 
-
+document.getElementById('timeIcon').addEventListener('click', function () {
+  document.getElementById('time').focus();
+});
 
 
