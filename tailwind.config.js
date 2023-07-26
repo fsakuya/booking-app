@@ -25,7 +25,11 @@ module.exports = {
         customBlue_4: '#0438FE',
       },
 
-      outline: ['focus']
+      outline: ['focus'],
+
+      height: {
+        '80': '17.5rem',
+      }
     },
   },
 
