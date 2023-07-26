@@ -95,66 +95,68 @@
               <div class="flex flex-wrap">
                   @if ($favorites)
                       @foreach ($favorites as $favorite)
-                      <div class="md:w-1/2 pr-16 pb-3">
-                          <div class="bg-white shadow-2 border-gray-200 border-opacity-60 rounded-lg overflow-hidden h-80">
-                            <div class="h-1/2 relative">  
-                            @if (empty($favorite->image->filename))
-                                  <img class="w-full h-full overflow-hidden object-cover" src="{{ asset('images/no_image.jpg') }}">
-                              @else
-                                  <img class="w-full h-full overflow-hidden object-cover"
-                                      src="{{ asset('storage/shops/' . $favorite->image->filename) }}">
-                              @endif
-                            </div>
-                              <div class="p-4">
-                                  <h1 class="title-font text-lg font-bold text-gray-900">{{ $favorite->name }}
-                                  </h1>
-                                  <div class="flex mt-1">
-                                      <div class="text-xs badge badge-outline font-bold"><span>#</span>
-                                          @if ($favorite->area_id == 1)
-                                              東京
-                                          @elseif ($favorite->area_id == 2)
-                                              大阪
-                                          @elseif ($favorite->area_id == 3)
-                                              福岡
-                                          @endif
-                                      </div>
-                                      <div class="ml-2 text-xs badge badge-outline font-bold"><span>#</span>
-                                          @if ($favorite->genre_id == 1)
-                                              イタリアン
-                                          @elseif ($favorite->genre_id == 2)
-                                              ラーメン
-                                          @elseif ($favorite->genre_id == 3)
-                                              寿司
-                                          @elseif ($favorite->genre_id == 4)
-                                              焼肉
-                                          @elseif ($favorite->genre_id == 5)
-                                              居酒屋
-                                          @endif
-                                      </div>
+                          <div class="md:w-1/2 pr-16 pb-3">
+                              <div
+                                  class="bg-white shadow-2 border-gray-200 border-opacity-60 rounded-lg overflow-hidden h-80">
+                                  <div class="h-1/2 relative">
+                                      @if (empty($favorite->image->filename))
+                                          <img class="w-full h-full overflow-hidden object-cover"
+                                              src="{{ asset('images/no_image.jpg') }}">
+                                      @else
+                                          <img class="w-full h-full overflow-hidden object-cover"
+                                              src="{{ asset('storage/shops/' . $favorite->image->filename) }}">
+                                      @endif
                                   </div>
-                                  <div class="flex items-center justify-between pt-6 mb-1">
-                                      <a href="{{ route('user.list.show', $favorite->id) }}"
-                                          class="py-1 px-4 inline-flex justify-center items-center gap-2 rounded-md border border-transparent bg-customBlue text-white hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 transition-all text-sm dark:focus:ring-offset-gray-800">
-                                          詳しくみる
-                                      </a>
-                                      <button class="favorite-button w-8 h-8 p-0" data-shop-id="{{ $favorite->id }}">
-                                          @if (Auth::user() && Auth::user()->favorites->contains($favorite->id))
-                                              <img class="w-full h-full" src="{{ asset('images/heart-red.svg') }}">
-                                          @else
-                                              <img class="w-full h-full" src="{{ asset('images/heart-gray.svg') }}">
-                                          @endif
-                                      </button>
+                                  <div class="p-4">
+                                      <h1 class="title-font text-lg font-bold text-gray-900">{{ $favorite->name }}
+                                      </h1>
+                                      <div class="flex mt-1">
+                                          <div class="text-xs badge badge-outline font-bold"><span>#</span>
+                                              @if ($favorite->area_id == 1)
+                                                  東京
+                                              @elseif ($favorite->area_id == 2)
+                                                  大阪
+                                              @elseif ($favorite->area_id == 3)
+                                                  福岡
+                                              @endif
+                                          </div>
+                                          <div class="ml-2 text-xs badge badge-outline font-bold"><span>#</span>
+                                              @if ($favorite->genre_id == 1)
+                                                  イタリアン
+                                              @elseif ($favorite->genre_id == 2)
+                                                  ラーメン
+                                              @elseif ($favorite->genre_id == 3)
+                                                  寿司
+                                              @elseif ($favorite->genre_id == 4)
+                                                  焼肉
+                                              @elseif ($favorite->genre_id == 5)
+                                                  居酒屋
+                                              @endif
+                                          </div>
+                                      </div>
+                                      <div class="flex items-center justify-between pt-6 mb-1">
+                                          <a href="{{ route('user.list.show', $favorite->id) }}"
+                                              class="py-1 px-4 inline-flex justify-center items-center gap-2 rounded-md border border-transparent bg-customBlue text-white hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 transition-all text-sm dark:focus:ring-offset-gray-800">
+                                              詳しくみる
+                                          </a>
+                                          <button class="favorite-button w-8 h-8 p-0"
+                                              data-shop-id="{{ $favorite->id }}">
+                                              @if (Auth::user() && Auth::user()->favorites->contains($favorite->id))
+                                                  <img class="w-full h-full" src="{{ asset('images/heart-red.svg') }}">
+                                              @else
+                                                  <img class="w-full h-full"
+                                                      src="{{ asset('images/heart-gray.svg') }}">
+                                              @endif
+                                          </button>
+                                      </div>
                                   </div>
                               </div>
                           </div>
-                      </div>
                       @endforeach
                   @endif
               </div>
           </div>
       </div>
-      </div>
-
   </x-guest-layout>
 
   <script>
