@@ -16,17 +16,29 @@
                     <div class="mb-4 relative">
                         <input type="time" id="time" name="time"
                             class="py-1 px-1 text-xs w-full bg-white rounded border border-gray-300 outline-none text-gray-700 transition-colors duration-200 ease-in-out">
-                        <img class="w-3 h-3 absolute top-1/2 right-1 transform -translate-y-1/2 pointer-events-none"
-                            src="{{ asset('images/icon-arrow.svg') }}">
+                        {{-- <img class="w-3 h-3 absolute top-1/2 right-1 transform -translate-y-1/2 pointer-events-none"
+                            src="{{ asset('images/icon-arrow.svg') }}"> --}}
                     </div>
                     <div class="mb-4 relative">
-                        <input type="number" id="number" name="number" min="1"
-                            class="py-1 px-1 text-xs w-full bg-white rounded border border-gray-300 outline-none text-gray-700  transition-colors duration-200 ease-in-out">
-                        <img class="w-3 h-3 absolute top-1/2 right-1 transform -translate-y-1/2 pointer-events-none"
-                            src="{{ asset('images/icon-arrow.svg') }}">
+                        <select id="number" name="number"
+                            class="py-1 px-1 text-xs w-full bg-white rounded border border-gray-300 outline-none text-gray-700 transition-colors duration-200 ease-in-out">
+                            <option value="">人数を選択してください</option>
+                            <option value="1">1人</option>
+                            <option value="2">2人</option>
+                            <option value="3">3人</option>
+                            <option value="4">4人</option>
+                            <option value="5">5人</option>
+                            <option value="6">6人</option>
+                            <option value="7">7人</option>
+                            <option value="8">8人</option>
+                            <option value="9">9人</option>
+                            <option value="10">10人</option>
+                        </select>
+                        {{-- <img class="w-3 h-3 absolute top-1/2 right-1 transform -translate-y-1/2 pointer-events-none"
+                            src="{{ asset('images/icon-arrow.svg') }}"> --}}
                     </div>
             </div>
-            <div class="mx-6 bg-customBlue_3 rounded-md flex flex-col text-white text-sm text-left mb-4 p-2">
+            <div class="w-5/6 mx-6 bg-customBlue_3 rounded-md flex flex-col text-white text-sm text-left mb-4 p-2">
                 <table class="ml-2">
                     <tr>
                         <th class="w-1/5 font-light">Shop</th>
