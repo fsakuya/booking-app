@@ -4,12 +4,12 @@
         <div
             class="py-20 px-10 border-none shadow-2 flex flex-col bg-white border rounded-sm dark:bg-gray-800 dark:border-gray-700 dark:shadow-slate-700/[.7]">
             <div class="flex justify-center">
-                <p class="text-2xl">ご予約ありがとうございます</p>
+                <p class="text-2xl">会員登録ありがとうございます</p>
             </div>
             <div class="flex items-center mt-10 mb-10">
-                <button onclick="location.href='/'"
-                    class="mx-auto bg-customBlue items-center px-4 py-2 border border-transparent rounded-md text-xs text-white hover:bg-gray-700 active:bg-gray-900 disabled:opacity-25 transition ease-in-out duration-150">
-                    戻る
+                <button onclick="location.href='/login'"
+                    class="mx-auto bg-customBlue items-center px-4 py-2 border border-transparent rounded-md font-semibold text-xs text-white hover:bg-gray-700 active:bg-gray-900 disabled:opacity-25 transition ease-in-out duration-150">
+                    ログインする
                 </button>
             </div>
         </div>

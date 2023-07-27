@@ -24,6 +24,9 @@ use Illuminate\Http\Request;
 //   return view('user.welcome');
 // });
 
+Route::get('/register-done', function () {
+  return view('user.register-done');
+});
 
 
 

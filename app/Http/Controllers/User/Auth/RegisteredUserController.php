@@ -50,6 +50,6 @@ class RegisteredUserController extends Controller
 
     // Auth::guard('users')->login($user);
 
-    return redirect(RouteServiceProvider::HOME);
+    return redirect('/register-done');
   }
 }

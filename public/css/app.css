@@ -855,6 +855,15 @@ select {
 .mt-auto {
   margin-top: auto !important;
 }
+.mt-36 {
+  margin-top: 9rem !important;
+}
+.mt-20 {
+  margin-top: 5rem !important;
+}
+.mt-16 {
+  margin-top: 4rem !important;
+}
 .block {
   display: block !important;
 }
@@ -1005,6 +1014,9 @@ select {
 .max-w-xs {
   max-width: 20rem !important;
 }
+.max-w-md {
+  max-width: 28rem !important;
+}
 .flex-1 {
   flex: 1 1 0% !important;
 }
@@ -1066,6 +1078,9 @@ select {
 }
 .flex-wrap {
   flex-wrap: wrap !important;
+}
+.items-end {
+  align-items: flex-end !important;
 }
 .items-center {
   align-items: center !important;
@@ -1154,6 +1169,14 @@ select {
 .rounded-t-xl {
   border-top-left-radius: 0.75rem !important;
   border-top-right-radius: 0.75rem !important;
+}
+.rounded-t-2xl {
+  border-top-left-radius: 1rem !important;
+  border-top-right-radius: 1rem !important;
+}
+.rounded-t-md {
+  border-top-left-radius: 0.375rem !important;
+  border-top-right-radius: 0.375rem !important;
 }
 .rounded-bl {
   border-bottom-left-radius: 0.25rem !important;
@@ -1336,6 +1359,9 @@ select {
 .p-6 {
   padding: 1.5rem !important;
 }
+.p-20 {
+  padding: 5rem !important;
+}
 .px-1 {
   padding-left: 0.25rem !important;
   padding-right: 0.25rem !important;
@@ -1400,6 +1426,14 @@ select {
   padding-top: 1.5rem !important;
   padding-bottom: 1.5rem !important;
 }
+.px-10 {
+  padding-left: 2.5rem !important;
+  padding-right: 2.5rem !important;
+}
+.py-20 {
+  padding-top: 5rem !important;
+  padding-bottom: 5rem !important;
+}
 .pb-1 {
   padding-bottom: 0.25rem !important;
 }
@@ -1456,6 +1490,9 @@ select {
 }
 .pb-4 {
   padding-bottom: 1rem !important;
+}
+.pt-3 {
+  padding-top: 0.75rem !important;
 }
 .text-left {
   text-align: left !important;
@@ -1520,6 +1557,9 @@ select {
 }
 .font-semibold {
   font-weight: 600 !important;
+}
+.font-normal {
+  font-weight: 400 !important;
 }
 .uppercase {
   text-transform: uppercase !important;
@@ -2154,6 +2194,11 @@ select {
   .md\:py-4 {
     padding-top: 1rem !important;
     padding-bottom: 1rem !important;
+  }
+
+  .md\:py-3 {
+    padding-top: 0.75rem !important;
+    padding-bottom: 0.75rem !important;
   }
 }
 
