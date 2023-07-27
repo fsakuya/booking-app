@@ -33,7 +33,7 @@
           </div>
       </div>
       <div class="flex">
-          <div class="w-2/5 pl-4">
+          <div class="w-2/5 pl-10">
               <p class="mb-4 font-extrabold text-lg">予約状況</p>
               @if ($reservedShops)
                   @foreach ($reservedShops as $reservation)
@@ -95,7 +95,7 @@
               <div class="flex flex-wrap">
                   @if ($favorites)
                       @foreach ($favorites as $favorite)
-                          <div class="md:w-1/2 pr-16 pb-3">
+                          <div class="md:w-1/2 pr-16 pb-4">
                               <div
                                   class="bg-white shadow-2 border-gray-200 border-opacity-60 rounded-lg overflow-hidden h-80">
                                   <div class="h-1/2 relative">

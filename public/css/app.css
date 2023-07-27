@@ -1451,6 +1451,12 @@ select {
 .pb-0 {
   padding-bottom: 0px !important;
 }
+.pl-10 {
+  padding-left: 2.5rem !important;
+}
+.pb-4 {
+  padding-bottom: 1rem !important;
+}
 .text-left {
   text-align: left !important;
 }
