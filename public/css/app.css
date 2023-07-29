@@ -736,6 +736,9 @@ select {
 .m-auto {
   margin: auto !important;
 }
+.m-4 {
+  margin: 1rem !important;
+}
 .mx-4 {
   margin-left: 1rem !important;
   margin-right: 1rem !important;

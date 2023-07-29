@@ -58,6 +58,7 @@
                     </tr>
                 </table>
             </div>
+            <x-auth-validation-errors class="p-4 m-4 bg-white items-center" :errors="$errors" />
             <input type="submit" value="予約する"
                 class=" bg-customBlue_4 p-4 text-white w-full mt-auto mb-0 text-sm rounded-b-md  active:bg-blue-600 transition duration-150 ease-in-out">
             </form>
