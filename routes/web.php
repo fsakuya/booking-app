@@ -24,9 +24,9 @@ use Illuminate\Http\Request;
 //   return view('user.welcome');
 // });
 
-// Route::get('/dashboard', function () {
-//   return view('user.dashboard');
-// })->middleware(['auth:users'])->name('dashboard');
+Route::get('/register-done', function () {
+  return view('user.register-done');
+});
 
 
 
@@ -41,10 +41,16 @@ Route::get('/menu', function () {
 
 Route::get('/', [ShopListController::class, 'index'])->name('list.index');
 Route::get('/show/{id}', [ShopListController::class, 'show'])->name('list.show');
+Route::get('/reviews/{id}', [ShopListController::class, 'showReviews'])->name('list.review');
 Route::post('/search', [ShopListController::class, 'search'])->name('list.search');
 
-Route::middleware('auth:users', 'verified')->group(function () 
+
+Route::middleware('auth:users')->group(function () 
 {
+  
+Route::get('/dashboard', function () {
+  return view('user.dashboard');
+});
   Route::get('/mypage', [MypageController::class, 'show'])->name('mypage.show');
   Route::get('/mypage/visited', [MypageController::class, 'showVisitedShops'])->name('mypage.showVisitedShops');
   Route::post('/mypage/review/{id}', [MypageController::class, 'storeReview'])->name('mypage.storeReview');
@@ -68,6 +74,7 @@ Route::middleware('auth:users', 'verified')->group(function ()
 
   Route::post('favorite/{shop}', [FavoriteController::class, 'store'])->name('favorites.store');
   Route::delete('favorite/{shop}', [FavoriteController::class, 'destroy'])->name('favorites.destroy');
+
 });
 
 Route::post('/stripe/webhook', [StripeWebhookController::class,'webhook']);
