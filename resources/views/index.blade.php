@@ -1,7 +1,7 @@
 <x-guest-layout>
     <div class="flex items-center justify-between mb-4">
         <x-common-header />
-        <x-search-box :areas="$areas" :genres="$genres" />
+        <x-search-box :areas="$areas" :genres="$genres"/>
     </div>
     <section>
         <div class="flex flex-wrap">
