@@ -54,6 +54,9 @@ class ShopListController extends Controller
 
   public function showReviews($id)
   {
-    //
+    $shop = Shop::findOrFail($id);
+    $reviews = $shop->reviews;
+    
+    return view('shops-reviews', compact('shop', 'reviews'));
   }
 }

@@ -1,6 +1,7 @@
 <x-guest-layout>
-  <x-common-header />
-
+  <div class="mb-20">
+    <x-common-header />
+  </div>
       <div class="max-w-sm mx-auto">
         <div class="border-none shadow-1 flex flex-col bg-white border rounded-xl dark:bg-gray-800 dark:border-gray-700 dark:shadow-slate-700/[.7]">
           <div class="bg-customBlue border-b rounded-t-xl py-3 px-4 md:py-4 md:px-5 dark:bg-gray-800 dark:border-gray-700">

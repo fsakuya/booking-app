@@ -53,16 +53,16 @@ class ReserveController extends Controller
     $reservation->time = $request->time;
     $reservation->number = $request->number;
 
-    // Convert the reservation information to a string
-    $reservation_info = "User ID: {$reservation->user_id}, Shop ID: {$reservation->shop_id}, Date: {$reservation->date}, Time: {$reservation->time}, Number: {$reservation->number}";
+    // // Convert the reservation information to a string
+    // $reservation_info = "User ID: {$reservation->user_id}, Shop ID: {$reservation->shop_id}, Date: {$reservation->date}, Time: {$reservation->time}, Number: {$reservation->number}";
 
-    // Generate QR code with the reservation information
-    $qr_code = QrCode::format('png')->size(100)->generate($reservation_info);
-    // Save the QR code
-    $path = "public/qr-codes/reservation_{$reservation->user_id}_{$reservation->shop_id}.png";
-    Storage::put($path, $qr_code);
+    // // Generate QR code with the reservation information
+    // $qr_code = QrCode::format('png')->size(100)->generate($reservation_info);
+    // // Save the QR code
+    // $path = "public/qr-codes/reservation_{$reservation->user_id}_{$reservation->shop_id}.png";
+    // Storage::put($path, $qr_code);
 
-    $reservation->codename = $path;
+    // $reservation->codename = $path;
 
     $reservation->save();
 

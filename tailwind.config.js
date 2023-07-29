@@ -14,14 +14,22 @@ module.exports = {
     extend: {
       fontFamily: {
         sans: ['Nunito', ...defaultTheme.fontFamily.sans],
+        mulish: ['Mulish', 'sans-serif'],
+        noto: ['Noto Sans JP', 'sans-serif'],
+
       },
       colors: {
-        customBlue: '#305DFF',
-        customBlue_2: '#0438FE',
+        customBlue: '#2F5DFF',
+        customBlue_2: '#305DFF',
         customBlue_3: '#4E7FFF',
+        customBlue_4: '#0438FE',
       },
 
-      outline: ['focus']
+      outline: ['focus'],
+
+      height: {
+        '80': '17.5rem',
+      }
     },
   },
 
