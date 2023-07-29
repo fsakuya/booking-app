@@ -53,6 +53,7 @@ Route::get('/dashboard', function () {
 });
   Route::get('/mypage', [MypageController::class, 'show'])->name('mypage.show');
   Route::get('/mypage/visited', [MypageController::class, 'showVisitedShops'])->name('mypage.showVisitedShops');
+  Route::get('/mypage/review/{id}', [MypageController::class, 'showReviewShops'])->name('mypage.showReviewShops');
   Route::post('/mypage/review/{id}', [MypageController::class, 'storeReview'])->name('mypage.storeReview');
 
   Route::get('/mypage/checkout', [MypageController::class, 'showCheckoutForm'])->name('mypage.showCheckoutForm');
