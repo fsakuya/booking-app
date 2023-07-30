@@ -41,7 +41,6 @@ class ReserveRequest extends FormRequest
             'number.required' => '人数は必須です。',
             'number.integer' => '人数は数字で入力してください。',
             'number.min' => '人数は1名以上で入力してください。',
-
         ];
     }
 }

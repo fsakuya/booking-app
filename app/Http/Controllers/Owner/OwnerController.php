@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Owner;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\EmailCreateRequest;
 use App\Http\Requests\ShopCreateRequest;
 use App\Mail\UserMail;
 use App\Models\Image;
@@ -145,21 +146,13 @@ class OwnerController extends Controller
     return view('owner.createMail', compact('user'));
   }
 
-  public function sendMail(Request $request)
+  public function sendMail(EmailCreateRequest $request)
   {
 
-    //   $validated = $request->validate([
-    //     'title' => 'required|unique:posts|max:255',
-    //     'body' => 'required',
-    // ]);
-
-    // dd($request);
     $name = $request->username;
     $email = $request->useremail;
     $subject = $request->subject;
     $message = $request->message;
-
-    // dd($name, $email, $message, $subject);
 
     Mail::to($request->useremail)
     ->send(new UserMail($name, $email, $message, $subject));

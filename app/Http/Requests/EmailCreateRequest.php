@@ -13,7 +13,7 @@ class EmailCreateRequest extends FormRequest
      */
     public function authorize()
     {
-        return false;
+        return true;
     }
 
     /**
@@ -24,7 +24,16 @@ class EmailCreateRequest extends FormRequest
     public function rules()
     {
         return [
-            //
+            'message' => 'required|string|max:500',
+        ];
+    }
+
+    public function messages()
+    {
+        return [
+            'message.required' => 'メッセージは必須です。',
+            'message.string' => 'メッセージは文字形式で入力してください。',
+            'message.max' => 'メッセージは最大500文字以内で入力してください。',
         ];
     }
 }
