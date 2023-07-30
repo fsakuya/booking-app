@@ -1546,6 +1546,15 @@ select {
 .font-semibold {
   font-weight: 600 !important;
 }
+.\!font-light {
+  font-weight: 300 !important;
+}
+.\!font-medium {
+  font-weight: 500 !important;
+}
+.\!font-normal {
+  font-weight: 400 !important;
+}
 .uppercase {
   text-transform: uppercase !important;
 }

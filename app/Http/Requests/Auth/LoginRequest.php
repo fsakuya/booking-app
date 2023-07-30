@@ -29,8 +29,8 @@ class LoginRequest extends FormRequest
   public function rules()
   {
     return [
-      'email' => ['required', 'string', 'email', 'max:191'],
-      'password' => ['required', 'string', 'min:8', 'max:191']
+      'email' => ['required', 'string', 'email', 'max:20'],
+      'password' => ['required', 'string', 'min:8', 'max:20']
     ];
   }
 
@@ -98,5 +98,18 @@ class LoginRequest extends FormRequest
   public function throttleKey()
   {
     return Str::lower($this->input('email')) . '|' . $this->ip();
+  }
+
+  public function messages()
+  {
+      return [
+          'email.required' => 'メールアドレスは必須です。',
+          'email.email' => 'メールアドレスはメール形式で入力してください。',
+          'email.max' => 'メールアドレスは20文字以下で入力してください。',
+          'password.required' => 'パスワードは必須です。',
+          'password.string' => 'パスワードは文字形式で入力してください。',
+          'password.min' => 'パスワードは8字以上で入力してください。',
+          'password.max' => 'パスワードは20文字以下で入力してください。',
+      ];
   }
 }

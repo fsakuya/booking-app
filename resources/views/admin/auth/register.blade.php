@@ -41,7 +41,7 @@
                   </div>
                 </div>
                 <div class="flex items-center justify-end mt-4" >
-                    <x-button class="ml-4 !bg-customBlue">
+                    <x-button class="ml-4 !bg-customBlue !font-medium">
                         {{ __('登録') }}
                     </x-button>
                 </div>
