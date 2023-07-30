@@ -10,14 +10,14 @@
                     <div class="p-2 w-2/3 mx-auto">
                         <div class="relative">
                             <label for="name" class="leading-7 text-sm text-gray-600">店名 ※必須</label>
-                            <input type="text" id="name" name="name" value="" required
+                            <input type="text" id="name" name="name"  value="{{ old('name') }}" required
                                 class="w-full bg-gray-100 bg-opacity-50 rounded border border-gray-300 focus:border-indigo-500 focus:bg-white focus:ring-2 focus:ring-indigo-200 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out">
                         </div>
                     </div>
                     <div class="p-2 w-2/3 mx-auto">
                         <div class="relative">
                             <label for="area" class="leading-7 text-sm text-gray-600">エリア ※必須</label>
-                            <select id="area" name="area" value="" required
+                            <select id="area" name="area"  value="{{ old('area') }}" required
                                 class="w-full bg-gray-100 bg-opacity-50 rounded border border-gray-300 focus:border-indigo-500 focus:bg-white focus:ring-2 focus:ring-indigo-200 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out">
                                 <option value="1">東京</option>
                                 <option value="2">大阪</option>
@@ -28,7 +28,7 @@
                     <div class="p-2 w-2/3 mx-auto">
                         <div class="relative">
                             <label for="genre" class="leading-7 text-sm text-gray-600">ジャンル ※必須</label>
-                            <select id="genre" name="genre" value="" required
+                            <select id="genre" name="genre"  value="{{ old('genre') }}" required
                                 class="w-full bg-gray-100 bg-opacity-50 rounded border border-gray-300 focus:border-indigo-500 focus:bg-white focus:ring-2 focus:ring-indigo-200 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out">
                                 <option value="1">イタリアン</option>
                                 <option value="2">ラーメン</option>

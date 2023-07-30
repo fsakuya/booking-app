@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Owner;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\ShopCreateRequest;
 use App\Mail\UserMail;
 use App\Models\Image;
 use App\Models\Owner;
@@ -50,16 +51,9 @@ class OwnerController extends Controller
   {
     return view('owner.shopCreate');
   }
-  public function store(Request $request)
+  public function store(ShopCreateRequest $request)
   {
-    $request->validate([
-      'name' => 'required|string|max:20',
-      'genre' => 'required|string',
-      'area' => 'required|string',
-      'information' => 'required|string|max:1000',
-      'image' => 'nullable|image|max:2048',
 
-    ]);
     $shop = new Shop();
 
     $shop->owner_id = Auth::id();  // ログインユーザーのIDを取得
