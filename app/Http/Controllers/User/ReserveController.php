@@ -40,7 +40,7 @@ class ReserveController extends Controller
   {
     // dd($request);
     $request->validate([
-      'date' => 'required|date',
+      'date' => 'required|date|after:today',
       'time' => 'required|date_format:H:i',
       'number' => 'required|integer|min:1',
     ]);

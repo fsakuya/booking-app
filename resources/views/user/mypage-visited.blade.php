@@ -16,12 +16,12 @@
             @foreach ($visitedShops as $shop)
                 <div class="md:w-1/4 px-[1rem] py-3">
                     <div
-                        class=" bg-white shadow-2 border-2 border-gray-200 border-opacity-60 rounded-lg overflow-hidden">
+                        class=" bg-white shadow-2 border-opacity-60 rounded-lg overflow-hidden">
                         @if (empty($shop->shop->image->filename))
-                            <img class="lg:h-48 md:h-36 w-full h-full object-contain"
+                            <img class="w-full h-full overflow-hidden object-cover"
                                 src="{{ asset('images/no_image.jpg') }}">
                         @else
-                            <img class="lg:h-48 md:h-36 w-full h-full object-contain"
+                            <img class="w-full h-full overflow-hidden object-cover"
                                 src="{{ asset('storage/shops/' . $shop->shop->image->filename) }}">
                         @endif
                         <div class="p-2">
@@ -53,22 +53,10 @@
                                 </div>
                                 {{-- 評価フォーム --}}
                                 <div class="my-4">
-                                    <form method="POST"
-                                        action="{{ route('user.mypage.storeReview', ['id' => $shop->id]) }}">
+                                    <form method="get"
+                                        action="{{ route('user.mypage.showReviewShops', ['id' => $shop->id]) }}">
                                         @csrf
-                                        <input type="hidden" name="user_id" value="{{ auth()->id() }}">
-                                        <div class="mb-2">
-                                            <label for="number">評価</label>
-                                            <input type="number" id="number" name="number" min="1"
-                                                max="5"
-                                                class="py-1 px-1 text-xs w-full bg-white rounded border border-gray-300 outline-none text-gray-700 transition-colors duration-200 ease-in-out">
-                                        </div>
-                                        <div class="mb-2">
-                                            <label for="text">コメント</label>
-                                            <textarea type="text" id="text" name="text"
-                                                class="text-left py-1 px-1 text-xs w-full bg-white rounded border border-gray-300 outline-none text-gray-700 transition-colors duration-200 ease-in-out">
-                                              </textarea>
-                                        </div>
+
                                 </div>
                                 <div class="flex items-center justify-between pt-2">
                                     <button type="submit"

@@ -1,5 +1,5 @@
 <form method="POST" action="{{ route('user.list.search') }}"
-    class="md:w-1/2 ms:w-full flex p-4 bg-white rounded border-solid border-gray-500 shadow-2">
+    class="md:w-1/2 ms:w-full flex p-4 !bg-white rounded border-solid border-gray-500 shadow-2">
     @csrf
     <select id="area" name="area" class=" font-semibold p-0 text-xs w-1/5 select border-0 max-w-xs">
         <option value="0">All area</option>

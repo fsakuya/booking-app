@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Review;
+use App\Models\Shop;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -37,8 +38,12 @@ class MypageController extends Controller
   public function showVisitedShops(Request $request)
   {
     $visitedShops = Auth::user()->reservations->where('visited', true)->where('checkouted', true);
-    // dd($visitedShops);
     return view('user.mypage-visited', compact('visitedShops'));
+  }
+  public function showReviewShops(Request $request, $id)
+  {
+    $reviewShop = Shop::findOrFail($id);
+    return view('user.mypage-review', compact('reviewShop'));
   }
 
   public function storeReview(Request $request, $id)
