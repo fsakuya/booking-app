@@ -5,7 +5,7 @@
             <div class="p-6 bg-white">
                 <x-auth-validation-errors class="mb-4" :errors="$errors" />  
                 <form method="post" action="{{ route('owner.store') }}"
-                    enctype="multipart/form-data">
+                    enctype="multipart/form-data" novalidate>
                     @csrf
                     <div class="p-2 w-2/3 mx-auto">
                         <div class="relative">

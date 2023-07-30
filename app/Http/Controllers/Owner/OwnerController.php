@@ -53,9 +53,9 @@ class OwnerController extends Controller
   public function store(Request $request)
   {
     $request->validate([
-      'name' => 'required|string|max:50',
-      'genre' => 'required',
-      'area' => 'required',
+      'name' => 'required|string|max:20',
+      'genre' => 'required|string',
+      'area' => 'required|string',
       'information' => 'required|string|max:1000',
       'image' => 'nullable|image|max:2048',
 

@@ -17,7 +17,7 @@
                       @csrf
                       <button type="submit"
                           class="text-sm py-2 px-4 inline-flex justify-center items-center gap-2 rounded-md border font-medium bg-red-500 text-white shadow-sm align-middle hover:bg-red-300 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-white focus:ring-blue-600 transition-all dark:bg-slate-900 dark:hover:bg-slate-800 dark:border-white dark:text-gray-400 dark:hover:text-white dark:focus:ring-offset-gray-800">
-                          来店した店舗
+                          来店した店舗を評価する
                       </button>
                   </form>
               </div>

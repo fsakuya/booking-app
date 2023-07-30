@@ -29,7 +29,7 @@
                             <tr>
                                 <td class="w-1/5 px-2 py-1">{{ $reservation->user->name }}</td>
                                 <td class="w-1/5 px-2 py-1">{{ $reservation->date }}</td>
-                                <td class="w-1/5 px-2 py-1">{{ $reservation->time }}</td>
+                                <td class="w-1/5 px-2 py-1">{{ \Carbon\Carbon::parse($reservation->time)->format('H:i') }}</td>
                                 <td class="w-1/5 px-2 py-1">{{ $reservation->number }}</td>
                                 <td class="w-1/8 px-2 py-1">
                                     <a href='{{ route('owner.mail.create', ['id' => $reservation->user->id]) }}'

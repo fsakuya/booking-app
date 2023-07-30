@@ -3,40 +3,40 @@
 
     <section>
         <div class="flex flex-wrap mx-[-1rem]">
-            @foreach ($checkoutShops as $shop)
+            @foreach ($checkoutReservations as $reservation)
                 <div class="md:w-1/4 px-[1rem] py-3">
                     <div
-                        class=" bg-white shadow-2 border-2 border-gray-200 border-opacity-60 rounded-lg overflow-hidden">
-                        @if (empty($shop->shop->image->filename))
-                            <img class="lg:h-48 md:h-36 w-full h-full object-contain"
+                        class=" bg-white shadow-2 border-opacity-60 rounded-lg overflow-hidden">
+                        @if (empty($reservation->shop->image->filename))
+                            <img class="w-full h-full overflow-hidden object-cover"
                                 src="{{ asset('images/no_image.jpg') }}">
                         @else
-                            <img class="lg:h-48 md:h-36 w-full h-full object-contain"
-                                src="{{ asset('storage/shops/' . $shop->shop->image->filename) }}">
+                            <img class="w-full h-full overflow-hidden object-cover"
+                                src="{{ asset('storage/shops/' . $reservation->shop->image->filename) }}">
                         @endif
                         <div class="p-2">
-                            <h1 class="title-font text-lg font-medium text-gray-900">{{ $shop->shop->name }}</h1>
+                            <h1 class="title-font text-lg font-medium text-gray-900">{{ $reservation->shop->name }}</h1>
                             <div class="p-1 md:p-2">
                                 <div class="flex">
                                     <div class="text-sm badge badge-outline"><span>#</span>
-                                        @if ($shop->shop->area_id == 1)
+                                        @if ($reservation->shop->area_id == 1)
                                             東京
-                                        @elseif ($shop->shop->area_id == 2)
+                                        @elseif ($reservation->shop->area_id == 2)
                                             大阪
-                                        @elseif ($shop->shop->area_id == 3)
+                                        @elseif ($reservation->shop->area_id == 3)
                                             福岡
                                         @endif
                                     </div>
                                     <div class="text-sm badge badge-outline"><span>#</span>
-                                        @if ($shop->shop->genre_id == 1)
+                                        @if ($reservation->shop->genre_id == 1)
                                             イタリアン
-                                        @elseif ($shop->shop->genre_id == 2)
+                                        @elseif ($reservation->shop->genre_id == 2)
                                             ラーメン
-                                        @elseif ($shop->shop->genre_id == 3)
+                                        @elseif ($reservation->shop->genre_id == 3)
                                             寿司
-                                        @elseif ($shop->shop->genre_id == 4)
+                                        @elseif ($reservation->shop->genre_id == 4)
                                             焼肉
-                                        @elseif ($shop->shop->genre_id == 5)
+                                        @elseif ($reservation->shop->genre_id == 5)
                                             居酒屋
                                         @endif
                                     </div>
@@ -44,7 +44,7 @@
                                 {{-- 金額入力フォーム --}}
                                 <div class="my-4">
                                     <form method="POST"
-                                        action="{{ route('user.mypage.processCheckout', ['id' => $shop->id]) }}">
+                                        action="{{ route('user.mypage.processCheckout', ['id' => $reservation->id]) }}" required>
                                         @csrf
                                         <input type="hidden" name="user_id" value="{{ auth()->id() }}">
                                         <div class="mb-2">
@@ -62,8 +62,8 @@
                                         支払う
                                     </button>
                                     </form>
-                                    <button class="favorite-button w-6 h-6 p-0" data-shop-id="{{ $shop->shop->id }}">
-                                        @if (Auth::user() && Auth::user()->favorites->contains($shop->shop->id))
+                                    <button class="favorite-button w-6 h-6 p-0" data-shop-id="{{ $reservation->shop->id }}">
+                                        @if (Auth::user() && Auth::user()->favorites->contains($reservation->shop->id))
                                             <img class="w-full h-full" src="{{ asset('images/heart-red.svg') }}">
                                         @else
                                             <img class="w-full h-full" src="{{ asset('images/heart-gray.svg') }}">

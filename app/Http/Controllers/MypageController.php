@@ -30,7 +30,6 @@ class MypageController extends Controller
       ];
     });
 
-    // dd($user, $favorites, $reservedShops);
 
     return view('user.mypage', compact('user', 'favorites', 'reservedShops'));
   }
@@ -48,7 +47,6 @@ class MypageController extends Controller
 
   public function storeReview(Request $request, $id)
   {
-    // dd($request,$id);
 
     $request->validate([
       'number' => 'required|integer|between:1,5',
@@ -69,14 +67,13 @@ class MypageController extends Controller
 
   public function showCheckoutForm(Request $request)
   {
-    $checkoutShops = Auth::user()->reservations->where('visited', true)->where('checkouted', false);
-    return view('user.checkout', compact('checkoutShops'));
+    $checkoutReservations = Auth::user()->reservations->where('visited', true)->where('checkouted', false);
+    return view('user.checkout', compact('checkoutReservations'));
   }
 
 
   public function processCheckout(Request $request, $id)
   {
-    // dd($request, $id);
     $user = User::findOrFail(Auth::id());
 
     $line_items = [
@@ -84,7 +81,7 @@ class MypageController extends Controller
         'price_data' => [
           'currency' => 'jpy', // 通貨を円に設定
           'product_data' => [
-            'name' => 'Shop Payment', // 商品名やサービス名を設定（適宜変更してください）
+            'name' => 'お支払い金額', // 商品名やサービス名を設定（適宜変更してください）
           ],
           'unit_amount' => $request->price, // 金額をそのまま設定（Stripeでは日本円は小数点以下を扱わないため）
         ],
@@ -98,10 +95,10 @@ class MypageController extends Controller
       'payment_method_types' => ['card'],
       'line_items' => [$line_items],
       'mode' => 'payment',
-      'success_url' => route('user.mypage.checkoutSuccess' , ),//予約idを渡す
+      'success_url' => route('user.mypage.checkoutSuccess'),//予約idを渡す
       'cancel_url' => route('user.mypage.show'),
       'metadata' => [
-        'shop_id' => $id,
+        'reservation_id' => $id,
       ],
     ]);
 

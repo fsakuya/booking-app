@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\User;
 
 use App\Http\Controllers\Controller;
+use App\Models\Reservation;
 use App\Models\Shop;
 use Illuminate\Http\Request;
 use Stripe\Exception\SignatureVerificationException;
@@ -52,14 +53,14 @@ class StripeWebhookController extends Controller
     // if ($request->type == 'checkout.session.completed') {
     //   $session = $request->data['object'];
 
-    // ShopのIDを取得します。このIDはStripe Checkoutセッションのメタデータに保存されている必要があります。
-    $shopId = $session['metadata']['shop_id'];
+    // ReservationのIDを取得します。このIDはStripe Checkoutセッションのメタデータに保存されている必要があります。
+    $reservationId = $session['metadata']['reservation_id'];
 
-    // Shopを取得し、checkoutedフィールドを更新します。
-    $shop = Shop::findOrFail($shopId);
-    $shop->reservedShops->checkouted = true;
+    // Reservationを取得し、checkoutedフィールドを更新します。
+    $reservation = Reservation::findOrFail($reservationId);
+    $reservation->checkouted = true;
 
-    $shop->save();
+    $reservation->save();
 
     // レスポンスをStripeに返します。これは成功のHTTPステータスコード200でなければなりません。
     return response()->json(['received' => true]);
