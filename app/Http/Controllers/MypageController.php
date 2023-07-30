@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\ReviewRequest;
 use App\Models\Review;
 use App\Models\Shop;
 use App\Models\User;
@@ -45,14 +46,8 @@ class MypageController extends Controller
     return view('user.mypage-review', compact('reviewShop'));
   }
 
-  public function storeReview(Request $request, $id)
+  public function storeReview(ReviewRequest $request, $id)
   {
-
-    $request->validate([
-      'number' => 'required|integer|between:1,5',
-      'text' => 'required|string|max:255',
-    ]);
-
     $review = new Review();
 
     $review->user_id = Auth::id();  // ログインユーザーのIDを取得
@@ -62,7 +57,7 @@ class MypageController extends Controller
 
     $review->save();
 
-    return redirect('/mypage/visited')->with('success', '評価を登録しました。');
+    return redirect('/mypage/visited')->with('success', '評価を投稿しました。');
   }
 
   public function showCheckoutForm(Request $request)

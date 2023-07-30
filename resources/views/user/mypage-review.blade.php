@@ -33,14 +33,14 @@
                                       <input type="hidden" name="user_id" value="{{ auth()->id() }}">
                                       <div class="mb-2">
                                           <label for="number">評価</label>
-                                          <input type="number" id="number" name="number" min="1" max="5"
+                                          <input type="number" id="number" name="number" min="1" max="5" value="{{ old('number') }}"
                                               class="py-1 px-1 text-xs w-full bg-white rounded border border-gray-300 outline-none text-gray-700 transition-colors duration-200 ease-in-out">
                                       </div>
                                       <div class="mb-2">
                                           <label for="text">コメント</label>
-                                          <textarea type="text" id="text" name="text"
+                                          <textarea type="text" id="text" name="text" 
                                               class="text-left py-1 px-1 text-xs w-full bg-white rounded border border-gray-300 outline-none text-gray-700 transition-colors duration-200 ease-in-out">
-                                            </textarea>
+                                              {{ old('text') }}</textarea>
                                       </div>
                                       <div class="flex items-center justify-between pt-2">
                                           <button type="submit"
