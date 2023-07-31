@@ -6,7 +6,7 @@
         <div class="max-w-lg bg-customBlue_2 rounded-md row-start-1 row-end-3 col-span-2 flex flex-col">
             <h2 class="px-6 py-6 text-white text-xl font-extrabold title-font">予約</h2>
             <div class="pl-6 pr-10">
-                <form method="POST" action="{{ route('user.reserve.store', ['id' => $shop->id]) }}">
+                <form method="POST" action="{{ route('user.reserve.store', ['id' => $shop->id]) }}" novalidate>
                     @csrf
                     <input type="hidden" name="user_id" value="{{ auth()->id() }}">
                     <div class="mb-4">

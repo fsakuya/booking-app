@@ -8,7 +8,7 @@
             <p>QRコード照会</p>
         </a>
         <div>
-            <form method="POST" action="{{ route('user.logout') }}">
+            <form method="POST" action="{{ route('owner.logout') }}">
                 @csrf
                 <button type="submit">Logout</button>
             </form>

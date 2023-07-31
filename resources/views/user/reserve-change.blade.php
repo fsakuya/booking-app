@@ -8,6 +8,7 @@
           <div class="pl-6 pr-10">
               <form method="POST" action="{{ route('user.reserve.change', $reservation->id) }}">
                   @csrf
+                  @method('PUT')
                   <div class="mb-4">
                       <input type="date" id="date" name="date" 
                           class="py-1 px-1 text-xs w-1/3 bg-white rounded border border-gray-300 outline-none text-gray-700 transition-colors duration-200 ease-in-out">

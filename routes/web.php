@@ -70,7 +70,7 @@ Route::get('/dashboard', function () {
   });
   Route::delete('reserve/cancel/{id}', [ReserveController::class, 'destroy'])->name('reserve.cancel');
   Route::get('/reserve/change/{id}', [ReserveController::class, 'showChangeForm'])->name('reserve.changeForm');
-  Route::post('/reserve/change/{id}', [ReserveController::class, 'change'])->name('reserve.change');
+  Route::put('/reserve/change/{id}', [ReserveController::class, 'change'])->name('reserve.change');
 
 
   Route::post('favorite/{shop}', [FavoriteController::class, 'store'])->name('favorites.store');
