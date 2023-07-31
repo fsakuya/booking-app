@@ -55,9 +55,11 @@ http://127.0.0.1:8000/admin<br>
 - SQL Ver 15.1 Distrib 10.4.27-MariaDB, for Win64 (AMD64)
 
 ## テーブル設計
+以下のスプレッドシートのテーブル仕様書シート<br>
 https://docs.google.com/spreadsheets/d/1hWSFLmYqldyTGUHVEWAvC2BMmBsWMMTvHLS4fRkNHxQ/edit?usp=sharing
 
 ## ER図
+以下のスプレッドシートのER図シート<br>
 https://docs.google.com/spreadsheets/d/1hWSFLmYqldyTGUHVEWAvC2BMmBsWMMTvHLS4fRkNHxQ/edit?usp=sharing
 
 ## 環境構築
