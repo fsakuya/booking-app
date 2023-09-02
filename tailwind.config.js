@@ -31,6 +31,10 @@ module.exports = {
       height: {
         '80': '17.5rem',
         '70': '15.5rem',
+      },
+
+      fontSize: {
+        '2xs': '.50rem',
       }
 
     },
