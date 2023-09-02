@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\MypageController;
+use App\Http\Controllers\ReviewController;
 use App\Http\Controllers\ShopListController;
 use App\Http\Controllers\User\FavoriteController;
 use App\Http\Controllers\User\ReserveController;
@@ -24,9 +25,23 @@ use Illuminate\Http\Request;
 //   return view('user.welcome');
 // });
 
+
 Route::get('/register-done', function () {
   return view('user.register-done');
 });
+
+//口コミページ表示
+Route::get('/reviews/create/{shop}', [ReviewController::class, 'create'])->name('reviews.create');
+
+//口コミ追加
+Route::post('/reviews/store', [ReviewController::class, 'store'])->name('reviews.store');
+
+//口コミ編集
+Route::put('/reviews/{reviews}', [ReviewController::class, 'update'])->name('reviews.update');
+
+//口コミ削除
+Route::delete('/reviews/', [ReviewController::class, 'delete'])->name('reviews.delete');
+
 
 
 

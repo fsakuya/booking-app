@@ -112,7 +112,10 @@
                             @endif
                         </div>
                     </div>
-                    <p class="text-sm">{{ $shop->information }}</p>
+                    <p class="text-sm mb-4">{{ $shop->information }}</p>
+                    <form method="get" action="{{ route('user.reviews.create', $shop->id) }}">
+                        <button type="submit" class="text-sm underline bg-transparent border-none">口コミを投稿する</button>
+                    </form>
                 </div>
             </div>
         </div>

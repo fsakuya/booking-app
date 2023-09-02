@@ -25,6 +25,7 @@ class CreateReviewsTable extends Migration
             ->onDelete('cascade');
           $table->integer('rating')->nullable();
           $table->string('comment')->nullable();
+          $table->string('image_path')->nullable();
           $table->timestamps();
         });
     }

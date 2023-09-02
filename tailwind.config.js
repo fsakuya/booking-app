@@ -8,6 +8,7 @@ module.exports = {
     './storage/framework/views/*.php',
     './resources/views/**/*.blade.php',
   ],
+
   mode: 'jit',
 
   theme: {
@@ -29,10 +30,14 @@ module.exports = {
 
       height: {
         '80': '17.5rem',
+        '70': '15.5rem',
       }
+
     },
   },
 
 
   plugins: [require('@tailwindcss/forms')],
 };
+
+
