@@ -48,6 +48,13 @@ document.getElementById('timeIcon').addEventListener('click', function () {
   document.getElementById('time').focus();
 });
 
+//ソート機能
+document.getElementById("sort-options").addEventListener('change', function () {
+  const selectedSort = this.value;
+  window.location.href = `/shops?sort=${selectedSort}`;
+});
+
+
 //星での評価ロジック
 // document.addEventListener('DOMContentLoaded', function() {
 //   const stars = document.querySelectorAll('.star');
