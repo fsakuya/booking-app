@@ -64,37 +64,51 @@
             </div>
         </div>
         <div class="row-start-2 row-end-4">
-            <div class="flex flex-col">
-                <div class="mb-6">
-                    <p>体験を評価してください</p>
-                    <!-- Star -->
-                    <div class="flex-shrink-0 flex space-x-1 mt-3 fill-blue-500">
-                      <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path d="M12 .288l2.833 8.718h9.167l-7.417 5.389 2.833 8.718-7.416-5.388-7.417 5.388 2.833-8.718-7.416-5.389h9.167z"/></svg>
-                      <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path d="M12 .288l2.833 8.718h9.167l-7.417 5.389 2.833 8.718-7.416-5.388-7.417 5.388 2.833-8.718-7.416-5.389h9.167z"/></svg>
-                      <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path d="M12 .288l2.833 8.718h9.167l-7.417 5.389 2.833 8.718-7.416-5.388-7.417 5.388 2.833-8.718-7.416-5.389h9.167z"/></svg>
-                      <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path d="M12 .288l2.833 8.718h9.167l-7.417 5.389 2.833 8.718-7.416-5.388-7.417 5.388 2.833-8.718-7.416-5.389h9.167z"/></svg>
-                      <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path d="M12 .288l2.833 8.718h9.167l-7.417 5.389 2.833 8.718-7.416-5.388-7.417 5.388 2.833-8.718-7.416-5.389h9.167z"/></svg>
+            <form action="{{ route('user.reviews.store', ['id' => $shop->id]) }}" method="POST">
+                @csrf
+                <div class="flex flex-col">
+                    <div class="mb-6">
+                        <p>体験を評価してください</p>
+                        {{-- <span class="star" data-rating="1">★</span>
+                        <span class="star" data-rating="2">★</span>
+                        <span class="star" data-rating="3">★</span>
+                        <span class="star" data-rating="4">★</span>
+                        <span class="star" data-rating="5">★</span>
+                        <input type="hidden" id="ratingValue" name="rating" value=""> --}}
                     </div>
-                    <!-- End Star -->
-                </div>
-                <div class="mb-6">
-                    <p>口コミを投稿</p>
-                    <textarea id="message" rows="4" class="mt-3 block p-2.5 w-full text-xs text-gray-900 bg-gray-100 border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="カジュアルな夜のお出かけにおすすめのスポット"></textarea>
-                    <p class="text-2xs text-right">0/400 (最高文字数)</p>
-                </div>
-                <div class="mb-6">
-                    <p class="mt-3">画像の追加</p>
-                    <div class="bg-white">
-                    <input type="file" name="imgpath">
-                    <input type="submit" value="クリックして写真を追加">
+                    <div class="mb-6">
+                        <p>口コミを投稿</p>
+                        <textarea id="text" name="text" rows="4"
+                            class="mt-3 block p-2.5 w-full text-xs text-gray-900 bg-gray-100 border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                            placeholder="カジュアルな夜のお出かけにおすすめのスポット"></textarea>
+                        <p class="text-2xs text-right">0/400 (最高文字数)</p>
                     </div>
-                </div>
+            </form>
+            <div class="mb-6">
+                <p>画像の追加</p>
+                <form action="{{ route('user.dropzone.store') }}" method="POST" enctype="multipart/form-data"
+                    id="image-upload" class="dropzone border-none mt-3">
+                    @csrf
+                    <div class="dz-default dz-message">
+                        <span class="dz-button text-sm">クリックして写真を追加<br>またはドラッグアンドドロップ</span>
+                    </div>
+                </form>
             </div>
         </div>
-        <div class="row-start-4 col-span-2 mx-auto">
-            <button class="text-xs bg-white hover:bg-blue-700 hover:text-white text-black  py-2 px-80 rounded-full ">
-                口コミを投稿
-            </button>
-        </div>
     </div>
+    <div class="row-start-4 col-span-2 mx-auto">
+        <button type="submit"
+            class="text-xs bg-white hover:bg-blue-700 hover:text-white text-black  py-2 px-60 rounded-full ">
+            口コミを投稿
+        </button>
+    </div>
+    </div>
+    <script type="text/javascript">
+        Dropzone.autoDiscover = false;
+        new Dropzone("#image-upload", {
+            thumnailWidth: 200,
+            maxFilesize: 1,
+            acceptedFiles: ".jpeg,.jpg,.png,.gif",
+        });
+    </script>
 </x-guest-layout>

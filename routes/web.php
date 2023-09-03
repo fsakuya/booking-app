@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\DropzoneController;
 use App\Http\Controllers\MypageController;
 use App\Http\Controllers\ReviewController;
 use App\Http\Controllers\ShopListController;
@@ -34,7 +35,10 @@ Route::get('/register-done', function () {
 Route::get('/reviews/create/{shop}', [ReviewController::class, 'create'])->name('reviews.create');
 
 //口コミ追加
-Route::post('/reviews/store', [ReviewController::class, 'store'])->name('reviews.store');
+Route::post('/reviews/store/{id}', [ReviewController::class, 'store'])->name('reviews.store');
+
+//画像アップロード
+Route::post('/upload', [DropzoneController::class, 'store'])->name('dropzone.store');
 
 //口コミ編集
 Route::put('/reviews/{reviews}', [ReviewController::class, 'update'])->name('reviews.update');

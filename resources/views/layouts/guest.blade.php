@@ -11,7 +11,11 @@
     <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Mulish:wght@900&family=Noto+Sans+JP&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Mulish:wght@900&family=Noto+Sans+JP&display=swap"
+        rel="stylesheet">
+    <script src="https://unpkg.com/dropzone@5/dist/min/dropzone.min.js"></script>
+    <link rel="stylesheet" href="https://unpkg.com/dropzone@5/dist/min/dropzone.min.css" type="text/css" />
+
 
     <!-- Scripts -->
     {{-- @vite(['resources/css/app.css', 'resources/js/app.js']) --}}
@@ -20,7 +24,7 @@
     <link rel="stylesheet" href="{{ asset('css/recet.css') }}">
     <link rel="stylesheet" href="{{ asset('css/app.css') }}">
 
-    <link href="/dist/styles.css" rel="stylesheet">
+    {{-- <link href="/dist/styles.css" rel="stylesheet"> --}}
 
 </head>
 

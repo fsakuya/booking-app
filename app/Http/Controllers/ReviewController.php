@@ -2,8 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Review;
 use App\Models\Shop;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+
 
 class ReviewController extends Controller
 {
@@ -13,9 +16,18 @@ class ReviewController extends Controller
     // dd($shop);
     return view('store-review', ['shop' => $shop]);
   }
-  public function store(Request $request)
+  public function store(Request $request, $shopId)
   {
-      // 口コミをデータベースに保存する処理
+    // dd($request, $shopId);
+    $review = new Review();
+
+    $review->user_id = Auth::id();  // ログインユーザーのIDを取得
+    $review->shop_id = $shopId;  // URLから渡されたIDを使用
+    // $review->rating = $request->number;
+    $review->comment = $request->text;
+    $review->save();
+
+    return redirect('/');  
   }
   
   public function update(Request $request, $review)
