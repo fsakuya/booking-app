@@ -14,7 +14,10 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Facades\Validator;
 use InterventionImage;
+use League\Csv\Reader;
+
 
 
 class OwnerController extends Controller
@@ -164,4 +167,50 @@ class OwnerController extends Controller
       ->with(['message' => 'メッセージを送信しました。']);
 
   }
+
+  public function importForm()
+{
+    return view('owner.import');
+}
+
+public function import(Request $request)
+{
+    // ファイルの存在と拡張子の確認
+    $file = $request->file('csv_file');
+    if (!$file->isValid() || !in_array($file->getClientOriginalExtension(), ['csv'])) {
+        return back()->withErrors('CSVファイルをアップロードしてください');
+    }
+
+    $csv = Reader::createFromPath($file->path());
+    $csv->setHeaderOffset(0);
+    $records = $csv->getRecords();
+
+    foreach ($records as $record) {
+        // バリデーションの実装
+        $validator = Validator::make($record, [
+            '店舗名' => 'required|max:50',
+            '地域' => 'required|in:東京都,大阪府,福岡県',
+            'ジャンル' => 'required|in:寿司,焼肉,イタリアン,居酒屋,ラーメン',
+            '店舗概要' => 'required|max:400',
+            '画像URL' => 'required|mimes:jpeg,png'
+        ]);
+
+        if ($validator->fails()) {
+            return back()->withErrors($validator);
+        }
+
+        // 保存処理
+        Shop::create([
+            'name' => $record['店舗名'],
+            'area' => $record['地域'],
+            'genre' => $record['ジャンル'],
+            'overview' => $record['店舗概要'],
+            'image_url' => $record['画像URL']
+        ]);
+    }
+
+    return back()->with('success', '店舗情報のインポートが完了しました。');
+}
+
+
 }

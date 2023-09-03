@@ -43,6 +43,9 @@ Route::middleware('auth:owners')->group(function () {
   Route::put('/update/{id}', [OwnerController::class, 'update'])->name('update');
   Route::get('/mail/{id}', [OwnerController::class, 'createMail'])->name('mail.create');
   Route::post('/mail/send', [OwnerController::class, 'sendMail'])->name('mail.send');
+  Route::get('/import', [OwnerController::class, 'importForm'])->name('import.form');
+  Route::post('/import', [OwnerController::class, 'import'])->name('import');
+
 
 });
 

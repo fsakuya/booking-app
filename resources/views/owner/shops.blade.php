@@ -70,6 +70,11 @@
                 </button>
             </div>
             <div class="flex justify-center pl-4 mt-10 w-full mx-auto">
+              <button onclick="location.href='{{ route('owner.import.form') }}'"
+                  class="flex text-white bg-indigo-500 border-0 py-2 px-6 focus:outline-none hover:bg-indigo-600 rounded">CSVインポート
+              </button>
+          </div>
+            <div class="flex justify-center pl-4 mt-10 w-full mx-auto">
                 <button onclick="location.href='/owner'"
                     class="flex text-white bg-indigo-500 border-0 py-2 px-6 focus:outline-none hover:bg-indigo-600 rounded">戻る
                 </button>
