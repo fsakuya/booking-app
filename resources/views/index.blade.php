@@ -4,6 +4,13 @@
         <x-sort-options />
         <x-search-box :areas="$areas" :genres="$genres" />
     </div>
+    {{-- フラッシュメッセージ --}}
+    @if (session('success'))
+        <div class="alert alert-success text-center bg-red-400 p-4 text-md m-2">
+            {{ session('success') }}
+        </div>
+    @endif
+    {{-- フラッシュメッセージ終わり --}}
     <section>
         <div class="flex flex-wrap">
             @foreach ($shops as $shop)

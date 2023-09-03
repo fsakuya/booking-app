@@ -64,17 +64,24 @@
             </div>
         </div>
         <div class="row-start-2 row-end-4">
-            <form action="{{ route('user.reviews.store', ['id' => $shop->id]) }}" method="POST">
+            <form action="{{ route('user.reviews.store', ['id' => $shop->id]) }}" method="POST"
+                enctype="multipart/form-data">
                 @csrf
                 <div class="flex flex-col">
                     <div class="mb-6">
                         <p>体験を評価してください</p>
-                        {{-- <span class="star" data-rating="1">★</span>
-                        <span class="star" data-rating="2">★</span>
-                        <span class="star" data-rating="3">★</span>
-                        <span class="star" data-rating="4">★</span>
-                        <span class="star" data-rating="5">★</span>
-                        <input type="hidden" id="ratingValue" name="rating" value=""> --}}
+                        <div class="rate-form">
+                            <input id="star5" type="radio" name="rate" value="5">
+                            <label for="star5">★</label>
+                            <input id="star4" type="radio" name="rate" value="4">
+                            <label for="star4">★</label>
+                            <input id="star3" type="radio" name="rate" value="3">
+                            <label for="star3">★</label>
+                            <input id="star2" type="radio" name="rate" value="2">
+                            <label for="star2">★</label>
+                            <input id="star1" type="radio" name="rate" value="1">
+                            <label for="star1">★</label>
+                        </div>
                     </div>
                     <div class="mb-6">
                         <p>口コミを投稿</p>
@@ -83,32 +90,29 @@
                             placeholder="カジュアルな夜のお出かけにおすすめのスポット"></textarea>
                         <p class="text-2xs text-right">0/400 (最高文字数)</p>
                     </div>
-            </form>
-            <div class="mb-6">
-                <p>画像の追加</p>
-                <form action="{{ route('user.dropzone.store') }}" method="POST" enctype="multipart/form-data"
-                    id="image-upload" class="dropzone border-none mt-3">
-                    @csrf
-                    <div class="dz-default dz-message">
-                        <span class="dz-button text-sm">クリックして写真を追加<br>またはドラッグアンドドロップ</span>
+                    <div class="mb-6">
+                        <p>画像の追加</p>
+                        <div id="image-upload" class="dropzone border-none mt-3">
+                            <div class="dz-default dz-message">
+                                <span class="dz-button text-sm">クリックして写真を追加<br>またはドラッグアンドドロップ</span>
+                            </div>
+                        </div>
                     </div>
-                </form>
-            </div>
+                </div>
         </div>
-    </div>
-    <div class="row-start-4 col-span-2 mx-auto">
-        <button type="submit"
-            class="text-xs bg-white hover:bg-blue-700 hover:text-white text-black  py-2 px-60 rounded-full ">
-            口コミを投稿
-        </button>
-    </div>
-    </div>
-    <script type="text/javascript">
-        Dropzone.autoDiscover = false;
-        new Dropzone("#image-upload", {
-            thumnailWidth: 200,
-            maxFilesize: 1,
-            acceptedFiles: ".jpeg,.jpg,.png,.gif",
-        });
-    </script>
+        <div class="row-start-4 col-span-2 mx-auto">
+            <button type="submit"
+                class="text-xs bg-white hover:bg-blue-700 hover:text-white text-black  py-2 px-60 rounded-full ">
+                口コミを投稿
+            </button>
+        </div>
+        </form>
+        <script type="text/javascript">
+            Dropzone.autoDiscover = false;
+            new Dropzone("#image-upload", {
+                thumnailWidth: 200,
+                maxFilesize: 1,
+                acceptedFiles: ".jpeg,.jpg,.png,.gif",
+            });
+        </script>
 </x-guest-layout>

@@ -18,16 +18,19 @@ class ReviewController extends Controller
   }
   public function store(Request $request, $shopId)
   {
-    // dd($request, $shopId);
-    $review = new Review();
+    $request->validate([
+      'rate' => 'required|integer|min:1|max:1',
+      'text' => 'required|max:400',
+    ]);
 
+    $review = new Review();
     $review->user_id = Auth::id();  // ログインユーザーのIDを取得
     $review->shop_id = $shopId;  // URLから渡されたIDを使用
-    // $review->rating = $request->number;
+    $review->rating = $request->rate;
     $review->comment = $request->text;
     $review->save();
 
-    return redirect('/');  
+    return redirect()->route('/')->with('success', 'レビューが正常に保存されました');
   }
   
   public function update(Request $request, $review)
