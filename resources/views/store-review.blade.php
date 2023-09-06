@@ -130,6 +130,9 @@
                 thumnailWidth: 200,
                 maxFilesize: 1,
                 acceptedFiles: ".jpeg,.jpg,.png,.gif",
+                headers: {
+                    'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').getAttribute('content')
+                }
             });
 
             //星での評価ロジック

@@ -31,51 +31,33 @@ favoriteButtons.forEach(button => {
   });
 })
 
-//予約フォーム
-document.getElementById('date').addEventListener('change', function () {
-  document.querySelector('#table-date').innerText = this.value;
-});
-
-document.getElementById('time').addEventListener('change', function () {
-  document.querySelector('#table-time').innerText = this.value;
-});
-
-document.getElementById('number').addEventListener('change', function () {
-  document.querySelector('#table-number').innerText = this.value + '人';
-});
-
-document.getElementById('timeIcon').addEventListener('click', function () {
-  document.getElementById('time').focus();
-});
-
-//ソート機能
-document.getElementById("sort-options").addEventListener('change', function () {
-  const selectedSort = this.value;
-  window.location.href = `/shops?sort=${selectedSort}`;
-});
-
-
-//星での評価ロジック
-// document.addEventListener('DOMContentLoaded', function() {
-//   const stars = document.querySelectorAll('.star');
-//   stars.forEach(star => {
-//       star.addEventListener('click', function() {
-//           let rating = parseInt(star.getAttribute('data-rating'));
-//           setRating(rating);
-//       });
-//   });
-
-//   function setRating(rating) {
-//       stars.forEach((star, index) => {
-//           if (index < rating) {
-//               star.classList.add('selected');
-//           } else {
-//               star.classList.remove('selected');
-//           }
-//       });
-//       document.getElementById('ratingValue').value = rating;
-//   }
+// //予約フォーム
+// document.getElementById('date').addEventListener('change', function () {
+//   document.querySelector('#table-date').innerText = this.value;
 // });
+
+// document.getElementById('time').addEventListener('change', function () {
+//   document.querySelector('#table-time').innerText = this.value;
+// });
+
+// document.getElementById('number').addEventListener('change', function () {
+//   document.querySelector('#table-number').innerText = this.value + '人';
+// });
+
+// document.getElementById('timeIcon').addEventListener('click', function () {
+//   document.getElementById('time').focus();
+// });
+
+// //ソート機能
+// document.getElementById("sort-options").addEventListener('change', function () {
+//   const selectedSort = this.value;
+//   window.location.href = `/shops?sort=${selectedSort}`;
+// });
+
+
+
+
+
 
 
 

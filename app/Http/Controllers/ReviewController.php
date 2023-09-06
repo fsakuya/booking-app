@@ -19,6 +19,7 @@ class ReviewController extends Controller
   }
   public function store(Request $request, $shopId)
   {
+    // dd($request, $shopId);
       $data = $request->validate([
           'rate' => 'required|integer|min:1|max:5',
           'text' => 'nullable|string|max:400',
