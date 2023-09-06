@@ -70,17 +70,33 @@
                 <div class="flex flex-col">
                     <div class="mb-6">
                         <p>体験を評価してください</p>
-                        <div class="rate-form">
-                            <input id="star5" type="radio" name="rate" value="5">
-                            <label for="star5">★</label>
-                            <input id="star4" type="radio" name="rate" value="4">
-                            <label for="star4">★</label>
-                            <input id="star3" type="radio" name="rate" value="3">
-                            <label for="star3">★</label>
-                            <input id="star2" type="radio" name="rate" value="2">
-                            <label for="star2">★</label>
-                            <input id="star1" type="radio" name="rate" value="1">
-                            <label for="star1">★</label>
+                        <div id="star-rating" class="flex-shrink-0 flex space-x-1 mt-3">
+                            <input type="hidden" id="ratingValue" name="rating" value="0">
+                            <svg data-rating="1" class="star" xmlns="http://www.w3.org/2000/svg" width="24"
+                                height="24" viewBox="0 0 24 24">
+                                <path
+                                    d="M12 .288l2.833 8.718h9.167l-7.417 5.389 2.833 8.718-7.416-5.388-7.417 5.388 2.833-8.718-7.416-5.389h9.167z" />
+                            </svg>
+                            <svg data-rating="2" class="star" xmlns="http://www.w3.org/2000/svg" width="24"
+                                height="24" viewBox="0 0 24 24">
+                                <path
+                                    d="M12 .288l2.833 8.718h9.167l-7.417 5.389 2.833 8.718-7.416-5.388-7.417 5.388 2.833-8.718-7.416-5.389h9.167z" />
+                            </svg>
+                            <svg data-rating="3" class="star" xmlns="http://www.w3.org/2000/svg" width="24"
+                                height="24" viewBox="0 0 24 24">
+                                <path
+                                    d="M12 .288l2.833 8.718h9.167l-7.417 5.389 2.833 8.718-7.416-5.388-7.417 5.388 2.833-8.718-7.416-5.389h9.167z" />
+                            </svg>
+                            <svg data-rating="4" class="star" xmlns="http://www.w3.org/2000/svg" width="24"
+                                height="24" viewBox="0 0 24 24">
+                                <path
+                                    d="M12 .288l2.833 8.718h9.167l-7.417 5.389 2.833 8.718-7.416-5.388-7.417 5.388 2.833-8.718-7.416-5.389h9.167z" />
+                            </svg>
+                            <svg data-rating="5" class="star" xmlns="http://www.w3.org/2000/svg" width="24"
+                                height="24" viewBox="0 0 24 24">
+                                <path
+                                    d="M12 .288l2.833 8.718h9.167l-7.417 5.389 2.833 8.718-7.416-5.388-7.417 5.388 2.833-8.718-7.416-5.389h9.167z" />
+                            </svg>
                         </div>
                     </div>
                     <div class="mb-6">
@@ -110,9 +126,32 @@
         <script type="text/javascript">
             Dropzone.autoDiscover = false;
             new Dropzone("#image-upload", {
+                url: '/upload',
                 thumnailWidth: 200,
                 maxFilesize: 1,
                 acceptedFiles: ".jpeg,.jpg,.png,.gif",
+            });
+
+            //星での評価ロジック
+            document.addEventListener('DOMContentLoaded', function() {
+                const stars = document.querySelectorAll('.star');
+                stars.forEach(star => {
+                    star.addEventListener('click', function() {
+                        let rating = parseInt(star.getAttribute('data-rating'));
+                        setRating(rating);
+                    });
+                });
+
+                function setRating(rating) {
+                    stars.forEach((star, index) => {
+                        if (index < rating) {
+                            star.classList.add('selected');
+                        } else {
+                            star.classList.remove('selected');
+                        }
+                    });
+                    document.getElementById('ratingValue').value = rating;
+                }
             });
         </script>
 </x-guest-layout>

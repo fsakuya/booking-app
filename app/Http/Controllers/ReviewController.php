@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Image;
 use App\Models\Review;
 use App\Models\Shop;
 use Illuminate\Http\Request;
@@ -18,20 +19,37 @@ class ReviewController extends Controller
   }
   public function store(Request $request, $shopId)
   {
-    $request->validate([
-      'rate' => 'required|integer|min:1|max:1',
-      'text' => 'required|max:400',
-    ]);
-
-    $review = new Review();
-    $review->user_id = Auth::id();  // ログインユーザーのIDを取得
-    $review->shop_id = $shopId;  // URLから渡されたIDを使用
-    $review->rating = $request->rate;
-    $review->comment = $request->text;
-    $review->save();
-
-    return redirect()->route('/')->with('success', 'レビューが正常に保存されました');
+      $data = $request->validate([
+          'rate' => 'required|integer|min:1|max:5',
+          'text' => 'nullable|string|max:400',
+          'images.*' => 'nullable|image|max:2048',
+      ]);
+  
+      // データベースに口コミ情報を保存
+      $review = new Review([
+          'shop_id' => $shopId,
+          'user_id' => Auth::id(),
+          'rate' => $data['rate'],
+          'text' => $data['text'],
+      ]);
+      $review->save();
+  
+      // 画像を保存
+      if ($request->hasFile('images')) {
+          foreach ($request->file('images') as $image) {
+              $path = $image->store('reviews', 'public');
+  
+              // 画像情報をデータベースに保存
+              $reviewImage = new Image();
+              $reviewImage->path = $path;  // 画像のパスを保存
+              $reviewImage->review_id = $review->id;  // 口コミIDを関連付ける
+              $reviewImage->save();
+          }
+      }
+  
+      return redirect()->route('/')->with('success', '口コミを投稿しました！');
   }
+  
   
   public function update(Request $request, $review)
   {
