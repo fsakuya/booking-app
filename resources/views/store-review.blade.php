@@ -130,9 +130,18 @@
                 thumnailWidth: 200,
                 maxFilesize: 1,
                 acceptedFiles: ".jpeg,.jpg,.png,.gif",
+                success: function(file, response) {
+                    // アップロードに成功した場合、サーバーからのレスポンス（画像のIDやパスなど）を受け取ります。
+                    console.log(response);
+                    file.id = response.id; // ファイルのIDをDropzoneのファイルオブジェクトに追加するなど、必要に応じて処理を追加できます。
+                },
+                error: function(file, response) {
+                    console.error("Error uploading file:", response);
+                },
                 headers: {
                     'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').getAttribute('content')
                 }
+
             });
 
             //星での評価ロジック

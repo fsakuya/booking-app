@@ -44,7 +44,7 @@ Route::post('/upload', [DropzoneController::class, 'store'])->name('dropzone.sto
 Route::put('/reviews/{reviews}', [ReviewController::class, 'update'])->name('reviews.update');
 
 //口コミ削除
-Route::delete('/reviews/', [ReviewController::class, 'delete'])->name('reviews.delete');
+Route::delete('/reviews', [ReviewController::class, 'delete'])->name('reviews.delete');
 
 
 

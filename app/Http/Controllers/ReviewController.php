@@ -19,9 +19,9 @@ class ReviewController extends Controller
   }
   public function store(Request $request, $shopId)
   {
-    // dd($request, $shopId);
+    dd($request, $shopId);
       $data = $request->validate([
-          'rate' => 'required|integer|min:1|max:5',
+          'rating' => 'required|integer|min:1|max:5',
           'text' => 'nullable|string|max:400',
           'images.*' => 'nullable|image|max:2048',
       ]);
@@ -30,7 +30,7 @@ class ReviewController extends Controller
       $review = new Review([
           'shop_id' => $shopId,
           'user_id' => Auth::id(),
-          'rate' => $data['rate'],
+          'rating' => $data['rate'],
           'text' => $data['text'],
       ]);
       $review->save();

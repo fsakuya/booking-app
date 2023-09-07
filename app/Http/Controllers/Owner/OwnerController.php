@@ -173,44 +173,60 @@ class OwnerController extends Controller
     return view('owner.import');
 }
 
-public function import(Request $request)
-{
-    // ファイルの存在と拡張子の確認
-    $file = $request->file('csv_file');
-    if (!$file->isValid() || !in_array($file->getClientOriginalExtension(), ['csv'])) {
-        return back()->withErrors('CSVファイルをアップロードしてください');
-    }
+  public function import(Request $request)
+  {
+      // ファイルの存在と拡張子の確認
+      $file = $request->file('csv_file');
+      if (!$file->isValid() || !in_array($file->getClientOriginalExtension(), ['csv'])) {
+          return back()->withErrors('CSVファイルをアップロードしてください');
+      }
 
-    $csv = Reader::createFromPath($file->path());
-    $csv->setHeaderOffset(0);
-    $records = $csv->getRecords();
+      $csv = Reader::createFromPath($file->path());
+      $csv->setHeaderOffset(0);
+      $records = $csv->getRecords();
 
-    foreach ($records as $record) {
-        // バリデーションの実装
-        $validator = Validator::make($record, [
-            '店舗名' => 'required|max:50',
-            '地域' => 'required|in:東京都,大阪府,福岡県',
-            'ジャンル' => 'required|in:寿司,焼肉,イタリアン,居酒屋,ラーメン',
-            '店舗概要' => 'required|max:400',
-            '画像URL' => 'required|mimes:jpeg,png'
-        ]);
+      $areaMap = [
+        '東京都' => 1,
+        '大阪府' => 2,
+        '福岡県' => 3
+    ];
+    
+    $genreMap = [
+        '寿司' => 1,
+        '焼肉' => 2,
+        'イタリアン' => 3,
+        '居酒屋' => 4,
+        'ラーメン' => 5
+    ];    
 
-        if ($validator->fails()) {
-            return back()->withErrors($validator);
-        }
+      foreach ($records as $record) {
+          // バリデーションの実装
+          $validator = Validator::make($record, [
+              '店舗名' => 'required|max:50',
+              '地域' => 'required|in:東京都,大阪府,福岡県',
+              'ジャンル' => 'required|in:寿司,焼肉,イタリアン,居酒屋,ラーメン',
+              '店舗概要' => 'required|max:400',
+              '画像URL' => 'required|mimes:jpeg,png'
+          ]);
 
-        // 保存処理
-        Shop::create([
+          if ($validator->fails()) {
+              return back()->withErrors($validator);
+          }
+
+          // 地域とジャンルの文字列をIDに変換
+          $areaId = $areaMap[$record['地域']] ?? null;
+          $genreId = $genreMap[$record['ジャンル']] ?? null;
+
+          Shop::create([
+            'owner_id' => Auth::id(),
+            'area_id' => $areaId,
+            'genre_id' => $genreId,
             'name' => $record['店舗名'],
-            'area' => $record['地域'],
-            'genre' => $record['ジャンル'],
-            'overview' => $record['店舗概要'],
+            'informatin' => $record['店舗概要'],
             'image_url' => $record['画像URL']
-        ]);
-    }
+            ]);
+            }
 
-    return back()->with('success', '店舗情報のインポートが完了しました。');
-}
-
-
+      return back()->with('success', '店舗情報のインポートが完了しました。');
+  }
 }
