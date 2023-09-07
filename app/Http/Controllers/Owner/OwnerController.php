@@ -60,7 +60,7 @@ class OwnerController extends Controller
 
     $shop = new Shop();
 
-    $shop->owner_id = Auth::id();  // ログインユーザーのIDを取得
+    $shop->owner_id = Auth::id(); // ログインユーザーのIDを取得
     $shop->name = $request->name;
     $shop->area_id = $request->area;
     $shop->genre_id = $request->genre;
@@ -107,7 +107,7 @@ class OwnerController extends Controller
       'image' => 'nullable|image|max:2048',
     ]);
 
-    $shop->owner_id = Auth::id();  // ログインユーザーのIDを取得
+    $shop->owner_id = Auth::id(); // ログインユーザーのIDを取得
     $shop->name = $request->name;
     $shop->area_id = $request->area;
     $shop->genre_id = $request->genre;
@@ -158,75 +158,80 @@ class OwnerController extends Controller
     $message = $request->message;
 
     Mail::to($request->useremail)
-    ->send(new UserMail($name, $email, $message, $subject));
+      ->send(new UserMail($name, $email, $message, $subject));
 
     $shops = Shop::where('owner_id', Auth::id())->get();
 
     return redirect()
-      ->route('owner.shops',compact('shops'))
+      ->route('owner.shops', compact('shops'))
       ->with(['message' => 'メッセージを送信しました。']);
 
   }
 
   public function importForm()
-{
+  {
     return view('owner.import');
-}
+  }
 
   public function import(Request $request)
   {
-      // ファイルの存在と拡張子の確認
-      $file = $request->file('csv_file');
-      if (!$file->isValid() || !in_array($file->getClientOriginalExtension(), ['csv'])) {
-          return back()->withErrors('CSVファイルをアップロードしてください');
+    dd($request);
+    // ファイルの存在と拡張子の確認
+    $file = $request->file('csv_file');
+    if (!$file->isValid() || !in_array($file->getClientOriginalExtension(), ['csv'])) {
+      return back()->withErrors('CSVファイルをアップロードしてください');
+    }
+
+    $csv = Reader::createFromPath($file->path());
+    $csv->setHeaderOffset(0);
+    $records = $csv->getRecords();
+
+    $areaMap = [
+      '東京都' => 1,
+      '大阪府' => 2,
+      '福岡県' => 3
+    ];
+
+    $genreMap = [
+      '寿司' => 1,
+      '焼肉' => 2,
+      'イタリアン' => 3,
+      '居酒屋' => 4,
+      'ラーメン' => 5
+    ];
+
+    foreach ($records as $record) {
+      // バリデーションの実装
+      $validator = Validator::make($record, [
+        '店舗名' => 'required|max:50',
+        '地域' => 'required|in:東京都,大阪府,福岡県',
+        'ジャンル' => 'required|in:寿司,焼肉,イタリアン,居酒屋,ラーメン',
+        '店舗概要' => 'required|max:400',
+        '画像URL' => 'required|mimes:jpeg,png'
+      ]);
+
+      if ($validator->fails()) {
+        return back()->withErrors($validator);
       }
 
-      $csv = Reader::createFromPath($file->path());
-      $csv->setHeaderOffset(0);
-      $records = $csv->getRecords();
+      // 地域とジャンルの文字列をIDに変換
+      $areaId = $areaMap[$record['地域']] ?? null;
+      $genreId = $genreMap[$record['ジャンル']] ?? null;
 
-      $areaMap = [
-        '東京都' => 1,
-        '大阪府' => 2,
-        '福岡県' => 3
-    ];
-    
-    $genreMap = [
-        '寿司' => 1,
-        '焼肉' => 2,
-        'イタリアン' => 3,
-        '居酒屋' => 4,
-        'ラーメン' => 5
-    ];    
+      Shop::create([
+        'owner_id' => Auth::id(),
+        'area_id' => $areaId,
+        'genre_id' => $genreId,
+        'name' => $record['店舗名'],
+        'informatin' => $record['店舗概要'],
+      ]);
+    }
 
-      foreach ($records as $record) {
-          // バリデーションの実装
-          $validator = Validator::make($record, [
-              '店舗名' => 'required|max:50',
-              '地域' => 'required|in:東京都,大阪府,福岡県',
-              'ジャンル' => 'required|in:寿司,焼肉,イタリアン,居酒屋,ラーメン',
-              '店舗概要' => 'required|max:400',
-              '画像URL' => 'required|mimes:jpeg,png'
-          ]);
+    $image_path = $request->file()->store('public/shops/');
+    $image = new Image();
+    $image->filename = $image_path;
+    $image->shop_id = Shop::id();
 
-          if ($validator->fails()) {
-              return back()->withErrors($validator);
-          }
-
-          // 地域とジャンルの文字列をIDに変換
-          $areaId = $areaMap[$record['地域']] ?? null;
-          $genreId = $genreMap[$record['ジャンル']] ?? null;
-
-          Shop::create([
-            'owner_id' => Auth::id(),
-            'area_id' => $areaId,
-            'genre_id' => $genreId,
-            'name' => $record['店舗名'],
-            'informatin' => $record['店舗概要'],
-            'image_url' => $record['画像URL']
-            ]);
-            }
-
-      return back()->with('success', '店舗情報のインポートが完了しました。');
+    return back()->with('success', '店舗情報のインポートが完了しました。');
   }
 }
