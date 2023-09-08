@@ -31,28 +31,28 @@ favoriteButtons.forEach(button => {
   });
 })
 
-// //予約フォーム
-// document.getElementById('date').addEventListener('change', function () {
-//   document.querySelector('#table-date').innerText = this.value;
-// });
+//予約フォーム
+document.getElementById('date').addEventListener('change', function () {
+  document.querySelector('#table-date').innerText = this.value;
+});
 
-// document.getElementById('time').addEventListener('change', function () {
-//   document.querySelector('#table-time').innerText = this.value;
-// });
+document.getElementById('time').addEventListener('change', function () {
+  document.querySelector('#table-time').innerText = this.value;
+});
 
-// document.getElementById('number').addEventListener('change', function () {
-//   document.querySelector('#table-number').innerText = this.value + '人';
-// });
+document.getElementById('number').addEventListener('change', function () {
+  document.querySelector('#table-number').innerText = this.value + '人';
+});
 
-// document.getElementById('timeIcon').addEventListener('click', function () {
-//   document.getElementById('time').focus();
-// });
+document.getElementById('timeIcon').addEventListener('click', function () {
+  document.getElementById('time').focus();
+});
 
-// //ソート機能
-// document.getElementById("sort-options").addEventListener('change', function () {
-//   const selectedSort = this.value;
-//   window.location.href = `/shops?sort=${selectedSort}`;
-// });
+//ソート機能
+document.getElementById("sort-options").addEventListener('change', function () {
+  const selectedSort = this.value;
+  window.location.href = `/shops?sort=${selectedSort}`;
+});
 
 
 

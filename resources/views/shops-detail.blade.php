@@ -117,7 +117,26 @@
                         <button type="submit" class="text-sm underline bg-transparent border-none">口コミを投稿する</button>
                     </form>
                 </div>
+                <div class="bg-customBlue_3 text-center text-white p-1 m-4">全ての口コミ情報</div>
+                <div class="border border-gray-200 mt-6"></div>
+                <div class="flex justify-end">
+                    <div class="mr-4 text-sm underline bg-transparent border-none">口コミを編集</div>
+                    <div class="text-sm underline bg-transparent border-none">口コミを削除</div>
+                </div>
+                <div class="p-4">
+                    @foreach ($reviews as $reviews)
+                        <h2 class="text-lg text-gray-900 font-medium title-font mb-2">
+                            評価：{{ $reviews->rating }}
+                        </h2>
+                        <p class="leading-relaxed text-base break-words">{{ $reviews->comment }}
+                        </p>
+                    @endforeach
+                </div>
+                <div class="border border-gray-200 mt-6"></div>
             </div>
         </div>
     </div>
+    </div>
+    </div>
+
 </x-guest-layout>

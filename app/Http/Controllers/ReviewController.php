@@ -51,6 +51,13 @@ class ReviewController extends Controller
       return redirect()->route('/')->with('success', '口コミを投稿しました！');
   }
   
+  public function show($id)
+  {
+    $shop = Shop::findOrFail($id);
+    $reviews = $shop->reviews;
+    
+    return view('shops-reviews', compact('shop', 'reviews'));
+  }
   
   public function update(Request $request, $review)
   {
